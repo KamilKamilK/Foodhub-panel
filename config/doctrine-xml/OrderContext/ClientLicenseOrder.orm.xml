@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping">
+  <entity xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping" name="App\OrderContext\Domain\Entity\ClientLicenseOrder" repository-class="App\OrderContext\Infrastructure\Persistence\Repository\ClientLicenseOrderRepository" table="lsi_client_license_order">
+    <id name="id" type="integer">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping" name="createdAt" type="datetime">
+      <gedmo:timestampable xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping" on="create"/>
+    </field>
+    <field xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping" name="updatedAt" type="datetime">
+      <gedmo:timestampable xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping" on="update"/>
+    </field>
+    <field name="specialCode" type="string" length="6" nullable="true"/>
+    <field name="orderId" type="string" length="50" nullable="false"/>
+    <field name="period" type="string" nullable="false"/>
+    <field name="subdomain" type="string" nullable="false"/>
+    <field name="priceNet" type="decimalType" precision="10" scale="2" nullable="true"/>
+    <field name="priceGross" type="decimalType" precision="10" scale="2" nullable="true"/>
+    <field name="extraPriceNet" type="decimalType" precision="10" scale="2" nullable="true"/>
+    <field name="extraPriceGross" type="decimalType" precision="10" scale="2" nullable="true"/>
+    <field name="addonsExtraPriceNet" type="decimalType" precision="10" scale="2" nullable="true"/>
+    <field name="addonsExtraPriceGross" type="decimalType" precision="10" scale="2" nullable="true"/>
+    <field name="devicesExtraPriceNet" type="decimalType" precision="10" scale="2" nullable="true"/>
+    <field name="devicesExtraPriceGross" type="decimalType" precision="10" scale="2" nullable="true"/>
+    <field name="orderType" type="string" length="255" nullable="false">
+      <options>
+        <option name="default">NEW_LICENSE</option>
+      </options>
+    </field>
+    <field name="invoiceNo" type="string" length="255" unique="true" nullable="true"/>
+    <embedded name="buyerData" class="App\OrderContext\Domain\ValueObject\BuyerData" column-prefix="buyer_"/>
+    <many-to-one field="license" target-entity="App\LicenseContext\Domain\Entity\License">
+      <join-column name="license_id" referenced-column-name="id"/>
+    </many-to-one>
+    <many-to-one field="client" target-entity="App\ClientContext\Domain\Entity\Client">
+      <join-column name="client_id" referenced-column-name="id"/>
+    </many-to-one>
+    <many-to-one field="clientLicense" target-entity="App\ClientContext\Domain\Entity\ClientLicense">
+      <join-column name="client_license_id" referenced-column-name="id"/>
+    </many-to-one>
+    <many-to-one field="selectedSet" target-entity="App\LicenseContext\Domain\Entity\LicenseSet">
+      <join-column name="license_set_id" referenced-column-name="id"/>
+    </many-to-one>
+    <one-to-many field="additionalDevices" target-entity="App\OrderContext\Domain\Entity\ClientLicenseOrderDevice" mapped-by="licenseOrder">
+      <cascade>
+        <cascade-persist/>
+      </cascade>
+    </one-to-many>
+    <one-to-many field="selectedAddons" target-entity="App\OrderContext\Domain\Entity\ClientLicenseOrderAddon" mapped-by="licenseOrder">
+      <cascade>
+        <cascade-persist/>
+      </cascade>
+    </one-to-many>
+    <one-to-one field="payment" target-entity="App\OrderContext\Domain\Entity\Payment" mapped-by="clientLicenseOrder">
+      <cascade>
+        <cascade-persist/>
+      </cascade>
+    </one-to-one>
+  </entity>
+</doctrine-mapping>

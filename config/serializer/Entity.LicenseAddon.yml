@@ -1,0 +1,32 @@
+App\LicenseContext\Domain\Entity\LicenseAddon:
+  exclusion_policy: ALL
+  properties:
+    id:
+      expose: true
+      type: integer
+      groups: [ licenseGet ]
+    priceMonth:
+      expose: true
+      type: decimalType
+      groups: [ licenseGet ]
+    priceYear:
+      expose: true
+      type: decimalType
+      groups: [ licenseGet ]
+    currency:
+      expose: true
+      type: string
+      groups: [ licenseGet ]
+    type:
+      expose: true
+      type: string
+      groups: [ licenseGet ]
+    category:
+      expose: true
+      type: string
+      groups: [ licenseGet ]
+  virtual_properties:
+    name:
+      type: string
+      exp: object.getTranslation(service('app.locale_service')).getName()
+      groups: [ licenseGet ]

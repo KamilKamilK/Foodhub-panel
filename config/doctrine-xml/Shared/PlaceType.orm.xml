@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping">
+  <entity name="App\Shared\Domain\Entity\PlaceType" repository-class="App\Shared\Infrastructure\Persistence\Repository\PlaceTypeRepository" table="lsi_place_type">
+    <id name="id" type="integer">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="label" type="string" length="50" nullable="false"/>
+    <field name="name" type="string" length="255" nullable="false"/>
+    <field name="position" type="integer" length="2" nullable="true"/>
+    <field name="icon" type="string" length="255" nullable="false"/>
+    <field name="locale" type="string" nullable="true"/>
+  </entity>
+</doctrine-mapping>

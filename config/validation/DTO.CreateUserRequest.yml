@@ -1,0 +1,14 @@
+App\ClientContext\Application\DTO\CreateUserRequest:
+  constraints:
+    - App\Shared\Infrastructure\Validator\Constraints\DtoUniqueEntity:
+        entityClass: App\ClientContext\Domain\Entity\ClientUser
+        fieldMapping:
+          email: email
+  properties:
+    email:
+      - NotBlank: ~
+      - Email: ~
+    subDomain:
+      - NotBlank: {groups: [Prod]}
+    active:
+      - NotNull: ~

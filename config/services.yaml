@@ -1,0 +1,181 @@
+parameters:
+    locale: 'en'
+    supported.languages: ['en', 'pl']
+    api.setupPath: '/fhp/setup'
+    api.protocol: '%env(resolve:API_PROTOCOL)%'
+    api.domain: '%env(resolve:API_DOMAIN)%'
+    mailer.sendPath: '/email/send'
+    mailer.sendUrl: '%env(resolve:MAILER_URL)%%mailer.sendPath%'
+    landingPage.confirmationPath: '/confirm'
+    landingPage.confirmationUrl: '%env(resolve:LANDING_PAGE_URL)%%landingPage.confirmationPath%'
+    app.url: '%env(resolve:APP_URL)%'
+    app.authLoginPath: '/#/auth/login'
+    app.authLoginUrl: '%env(resolve:APP_URL)%%app.authLoginPath%'
+    env.storageDir: '%env(resolve:ENV_STORAGE_DIR)%'
+    trial.periodLength: '%env(int:TRIAL_PERIOD_LENGTH)%'
+    trial.periodLengthWithCode: '%env(int:TRIAL_PERIOD_LENGTH_WITH_CODE)%'
+    period.yearLength: '%env(int:YEAR_PERIOD_LENGTH)%'
+    period.monthLength: '%env(int:MONTH_PERIOD_LENGTH)%'
+    payu.posId: '%env(resolve:PAYU_POS_ID)%'
+    payu.env: '%env(resolve:PAYU_ENV)%'
+    payu.md5: '%env(resolve:PAYU_MD5)%'
+    payu.clientId: '%env(resolve:PAYU_CLIENT_ID)%'
+    payu.clientSecret: '%env(resolve:PAYU_CLIENT_SECRET)%'
+    register.domain: '%env(resolve:REGISTER_DOMAIN_RESTRICTION)%'
+    fhp.domain: '%env(resolve:FHP_DOMAIN_RESTRICTION)%'
+    publicDir: '%kernel.project_dir%/public'
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        bind:
+            $publicDir: '%publicDir%'
+            $mailerSendUrl: '%mailer.sendUrl%'
+            $landingPageConfirmationUrl: '%landingPage.confirmationUrl%'
+            $appAuthLoginUrl: '%app.authLoginUrl%'
+            $apiProtocol: '%api.protocol%'
+            $apiDomain: '%api.domain%'
+            $apiSetupPath: '%api.setupPath%'
+            $envStorageDir: '%env.storageDir%'
+            $trialPeriodLength: '%trial.periodLength%'
+            $trialPeriodLengthWithCode: '%trial.periodLengthWithCode%'
+            $yearPeriodLength: '%period.yearLength%'
+            $monthPeriodLength: '%period.monthLength%'
+            $payuPosId: '%payu.posId%'
+            $appEnv: '%kernel.environment%'
+            $appUrl: '%app.url%'
+            $apkFilesDir: '%env(resolve:APK_FILES_DIR)%'
+            $defaultLocale: '%kernel.default_locale%'
+
+    App\:
+        resource: '../src/*'
+        exclude: '../src/{Migrations,Kernel.php}'
+
+    App\ClientContext\Infrastructure\Http\:
+        resource: '../src/ClientContext/Infrastructure/Http'
+        tags: ['controller.service_arguments']
+
+    App\LicenseContext\Infrastructure\Http\:
+        resource: '../src/LicenseContext/Infrastructure/Http'
+        tags: ['controller.service_arguments']
+
+    App\OrderContext\Infrastructure\Http\:
+        resource: '../src/OrderContext/Infrastructure/Http'
+        tags: ['controller.service_arguments']
+
+    App\MerchantContext\Infrastructure\Http\:
+        resource: '../src/MerchantContext/Infrastructure/Http'
+        tags: ['controller.service_arguments']
+
+    App\Shared\Infrastructure\Http\:
+        resource: '../src/Shared/Infrastructure/Http'
+        tags: ['controller.service_arguments']
+
+    App\MerchantContext\Domain\Repository\MerchantRepositoryInterface:
+        alias: App\MerchantContext\Infrastructure\Persistence\Repository\MerchantRepository
+
+    App\ClientContext\Domain\Repository\AgreementRepositoryInterface:
+        alias: App\ClientContext\Infrastructure\Persistence\Repository\AgreementRepository
+
+    App\ClientContext\Domain\Repository\ClientLicenseRepositoryInterface:
+        alias: App\ClientContext\Infrastructure\Persistence\Repository\ClientLicenseRepository
+
+    App\OrderContext\Domain\Repository\ClientLicenseRepositoryInterface:
+        alias: App\ClientContext\Infrastructure\Persistence\Repository\ClientLicenseRepository
+
+    App\ClientContext\Domain\Repository\ClientRepositoryInterface:
+        alias: App\ClientContext\Infrastructure\Persistence\Repository\ClientRepository
+
+    App\ClientContext\Domain\Repository\ClientUserRepositoryInterface:
+        alias: App\ClientContext\Infrastructure\Persistence\Repository\ClientUserRepository
+
+    App\LicenseContext\Domain\Repository\LicenseAdditionalDeviceRepositoryInterface:
+        alias: App\LicenseContext\Infrastructure\Persistence\Repository\LicenseAdditionalDeviceRepository
+
+    App\LicenseContext\Domain\Repository\LicenseAddonRepositoryInterface:
+        alias: App\LicenseContext\Infrastructure\Persistence\Repository\LicenseAddonRepository
+
+    App\LicenseContext\Domain\Repository\LicenseRepositoryInterface:
+        alias: App\LicenseContext\Infrastructure\Persistence\Repository\LicenseRepository
+
+    App\LicenseContext\Domain\Repository\LicenseSetRepositoryInterface:
+        alias: App\LicenseContext\Infrastructure\Persistence\Repository\LicenseSetRepository
+
+    App\OrderContext\Domain\Repository\ClientLicenseOrderRepositoryInterface:
+        alias: App\OrderContext\Infrastructure\Persistence\Repository\ClientLicenseOrderRepository
+
+    App\OrderContext\Domain\Repository\PaymentRepositoryInterface:
+        alias: App\OrderContext\Infrastructure\Persistence\Repository\PaymentRepository
+
+    App\Shared\Application\Service\TransactionServiceInterface:
+        alias: App\Shared\Infrastructure\Service\DoctrineTransactionService
+
+    App\Shared\Application\Service\EnvStorageInterface:
+        alias: App\Shared\Infrastructure\Service\DotEnvService
+
+    App\ClientContext\Application\Service\DatabaseProvisioningServiceInterface:
+        alias: App\ClientContext\Infrastructure\Database\CreateDatabaseService
+
+    App\ClientContext\Application\Service\TenantApiClientInterface:
+        alias: App\ClientContext\Infrastructure\Http\TenantApiClient
+
+    App\ClientContext\Application\Service\TenantIdentifierGeneratorInterface:
+        alias: App\ClientContext\Infrastructure\Service\TenantIdentifierGenerator
+
+    App\ClientContext\Application\Service\ClientTrialLicenseLookupInterface:
+        alias: App\ClientContext\Infrastructure\Persistence\Lookup\ClientTrialLicenseLookup
+
+    App\OrderContext\Application\Service\PayUGatewayInterface:
+        alias: App\OrderContext\Infrastructure\Gateway\PayUGateway
+
+    App\OrderContext\Application\Service\LicenseOrderFactoryInterface:
+        alias: App\OrderContext\Application\Factory\LicenseOrderFactory
+
+    App\OrderContext\Application\Service\OrderClientLookupInterface:
+        alias: App\OrderContext\Infrastructure\Persistence\Lookup\OrderClientLookup
+
+    App\OrderContext\Application\Service\OrderLicenseLookupInterface:
+        alias: App\OrderContext\Infrastructure\Persistence\Lookup\OrderLicenseLookup
+
+    App\Shared\Domain\Repository\PlaceTypeRepositoryInterface:
+        alias: App\Shared\Infrastructure\Persistence\Repository\PlaceTypeRepository
+
+    App\Shared\Domain\Repository\UserRepositoryInterface:
+        alias: App\Shared\Infrastructure\Persistence\Repository\UserRepository
+
+    api.serializer.decimal_type_serializer:
+        class: App\Shared\Infrastructure\Serializer\Type\DecimalType
+        tags:
+            - { name: jms_serializer.subscribing_handler }
+
+    App\Shared\Application\Service\LocaleService:
+        public: false
+
+    app.locale_service:
+        alias: App\Shared\Application\Service\LocaleService
+        public: true
+
+    App\OrderContext\Infrastructure\Gateway\PayUGateway:
+        arguments:
+            $cacheDir: '%kernel.project_dir%/var/cache/%kernel.environment%/payu'
+            $payuEnv: '%payu.env%'
+            $payuMd5: '%payu.md5%'
+            $payuClientId: '%payu.clientId%'
+            $payuClientSecret: '%payu.clientSecret%'
+
+    App\Shared\Infrastructure\EventSubscriber\LocaleSubscriber:
+        arguments:
+            $defaultLocale: '%kernel.default_locale%'
+
+    App\Shared\Infrastructure\Http\Exception\Handler\CompositeExceptionHandler:
+        arguments:
+            $handlers:
+                - '@App\Shared\Infrastructure\Http\Exception\Handler\AppExceptionHandler'
+                - '@App\Shared\Infrastructure\Http\Exception\Handler\ConstraintValidatorExceptionHandler'
+            $defaultHandler: '@App\Shared\Infrastructure\Http\Exception\Handler\ForeignExceptionHandler'
+
+    api.validator.special_code:
+        class: App\ClientContext\Infrastructure\Form\Validator\SpecialCode\SpecialCodeValidator
+        tags:
+            - { name: validator.constraint_validator }

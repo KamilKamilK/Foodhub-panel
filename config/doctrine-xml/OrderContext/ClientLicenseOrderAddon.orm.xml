@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping">
+  <entity name="App\OrderContext\Domain\Entity\ClientLicenseOrderAddon" table="lsi_client_license_order_addon">
+    <id name="id" type="integer">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="priceNet" type="decimalType" precision="10" scale="2" nullable="false">
+      <options><option name="default">0.00</option></options>
+    </field>
+    <field name="priceGross" type="decimalType" precision="10" scale="2" nullable="false">
+      <options><option name="default">0.00</option></options>
+    </field>
+    <many-to-one field="licenseOrder" target-entity="App\OrderContext\Domain\Entity\ClientLicenseOrder" inversed-by="selectedAddons">
+      <join-column name="license_order_id" referenced-column-name="id"/>
+    </many-to-one>
+    <many-to-one field="addon" target-entity="App\LicenseContext\Domain\Entity\LicenseAddon">
+      <join-column name="license_addon_id" referenced-column-name="id"/>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

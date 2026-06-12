@@ -1,0 +1,50 @@
+/* enable absolute positioning */
+.inner-addon {
+  position: relative;
+  width: 100%;
+}
+
+/* style icon */
+.inner-addon .flaticon {
+  position: absolute;
+  padding: 0.3rem;
+  color: #4a4a4a !important;
+}
+#passwordWatch,
+#passwordWatch2 {
+  cursor: pointer;
+  z-index: 9999999;
+  color: #bdbdbd !important;
+
+  &.active-icon {
+    color: #6d6d6d !important;
+  }
+
+  &.flaticon:before {
+    font-size: 1.5rem;
+    line-height: 1.8rem;
+  }
+}
+
+/* align icon */
+.left-addon .flaticon {
+  left: 0px;
+}
+.right-addon .flaticon {
+  right: 0.5rem;
+}
+
+/* add padding  */
+.left-addon input {
+  padding-left: 30px;
+}
+.right-addon input {
+  padding-right: 30px;
+}
+
+.place-type-error {
+  display: none;
+  color: red;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}

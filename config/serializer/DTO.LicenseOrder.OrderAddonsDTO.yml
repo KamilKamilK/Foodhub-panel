@@ -1,0 +1,3 @@
+App\OrderContext\Application\DTO\LicenseOrder\OrderAddonsDTO:
+  exclusion_policy: ALL
+  properties:

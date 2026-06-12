@@ -1,0 +1,8 @@
+registration:
+  validation:
+    phone: "Invalid phone number, e.g. 123456789"
+    password: "Password should contain at least 8 characters, including 1 uppercase letter and number"
+    repeat_password: "The passwords provided do not match"
+
+common:
+  incorrect_special_code: "Invalid special code"

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping">
+  <entity xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping" name="App\ClientContext\Domain\Entity\ClientAddon" table="lsi_client_addon">
+    <id name="id" type="integer">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping" name="createdAt" type="datetime">
+      <gedmo:timestampable xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping" on="create"/>
+    </field>
+    <field xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping" name="updatedAt" type="datetime">
+      <gedmo:timestampable xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping" on="update"/>
+    </field>
+    <field name="isActive" type="boolean"/>
+    <field name="validFrom" type="date"/>
+    <field name="expiredAt" type="date"/>
+    <many-to-one field="clientLicense" target-entity="App\ClientContext\Domain\Entity\ClientLicense" inversed-by="addons">
+      <join-column name="client_license_id" referenced-column-name="id"/>
+    </many-to-one>
+    <many-to-one field="licenseAddon" target-entity="App\LicenseContext\Domain\Entity\LicenseAddon" inversed-by="clientAddons">
+      <join-column name="license_addon_id" referenced-column-name="id"/>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

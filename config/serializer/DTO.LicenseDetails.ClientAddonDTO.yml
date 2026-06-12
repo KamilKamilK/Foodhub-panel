@@ -1,0 +1,35 @@
+App\ClientContext\Application\DTO\LicenseDetails\ClientAddonDTO:
+  exclusion_policy: ALL
+  properties:
+    licenseAddonId:
+      expose: true
+      type: integer
+      groups: [ licenseDetails ]
+    validFrom:
+      expose: true
+      type: string
+      groups: [ licenseDetails ]
+    expirationDate:
+      expose: true
+      type: string
+      groups: [ licenseDetails ]
+    addonType:
+      expose: true
+      type: string
+      groups: [ licenseDetails ]
+    addonCategory:
+      expose: true
+      type: string
+      groups: [ licenseDetails ]
+    isActiveOnNextPeriod:
+      expose: true
+      type: boolean
+      groups: [ licenseDetails ]
+    priceMonth:
+      expose: true
+      type: decimalType
+      groups: [ licenseDetails ]
+    priceYear:
+      expose: true
+      type: decimalType
+      groups: [ licenseDetails ]

@@ -1,0 +1,52 @@
+{% extends 'layout/app.html.twig' %}
+
+{% block body %}
+
+    <div class="card card-shadowed">
+        <div class="card-header">
+            <div class="card-title">
+                <span>{{ 'router.client.index.card.title'|trans }}</span>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">{{ 'router.client.index.table.number'|trans }}</th>
+                    <th scope="col">{{ 'router.client.index.table.subdomain'|trans }}</th>
+                    <th scope="col">{{ 'router.client.index.table.company_short_name'|trans }}</th>
+                    <th scope="col">{{ 'router.client.index.table.registration_date'|trans }}</th>
+                    <th scope="col">{{ 'router.client.index.table.license_name'|trans }}</th>
+                    <th scope="col">{{ 'router.client.index.table.expiration_date'|trans }}</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for client in clients %}
+                    <tr>
+                        <th>{{ loop.index }}</th>
+                        <td>{{ client.subdomain }}</td>
+                        <td>{{ client.company.name }}</td>
+                        <td>{{ client.createdAt|date('Y-m-d') }}</td>
+                        <td>
+                            {{ client.getLatestClientLicense().license.getTranslation(app.request.locale).name }}
+                            {% if client.getLatestClientLicense().license.isTrial %}
+                                (Demo)
+                            {% endif %}
+                        </td>
+                        <td>{{ client.getLatestClientLicense().expiredAt|date('Y-m-d') }}</td>
+                        <td>
+                            <a href="{{ path('client_edit', {'id': client.id }) }}">
+                                <button class="btn btn-primary btn-sm">
+                                    <i class="fa fa-pen"></i> {{ 'router.client.index.table.button.edit'|trans }}
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

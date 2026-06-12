@@ -1,0 +1,11 @@
+App\OrderContext\Application\DTO\LicenseOrder\LicenseOrderAdditionalDevicesDTO:
+  exclusion_policy: ALL
+  properties:
+    additionalDeviceId:
+      expose: true
+      type: integer
+      groups: [ licenseOrder ]
+    quantity:
+      expose: true
+      type: integer
+      groups: [ licenseOrder ]

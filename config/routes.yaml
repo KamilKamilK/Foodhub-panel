@@ -1,0 +1,8 @@
+register:
+  resource: "routes/register.yaml"
+  host: "%register.domain%"
+
+panel:
+  resource: "routes/panel.yaml"
+  host: "%fhp.domain%"
+

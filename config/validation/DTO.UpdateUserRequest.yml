@@ -1,0 +1,13 @@
+App\ClientContext\Application\DTO\UpdateUserRequest:
+  constraints:
+    - App\Shared\Infrastructure\Validator\Constraints\DtoUniqueEntity:
+        entityClass: App\ClientContext\Domain\Entity\ClientUser
+        fieldMapping:
+          email: email
+  properties:
+    email:
+      - NotBlank: ~
+      - Email: ~
+    previousEmail:
+      - NotBlank: ~
+      - Email: ~

@@ -1,0 +1,51 @@
+App\OrderContext\Application\DTO\LicenseOrder\AbstractLicenseOrderDTO:
+  exclusion_policy: ALL
+  properties:
+    subdomain:
+      expose: true
+      type: string
+      groups: [ licenseOrder ]
+    specialCode:
+      expose: true
+      type: string
+      groups: [ licenseOrder ]
+    addons:
+      expose: true
+      type: array<integer>
+      groups: [ licenseOrder ]
+    additionalDevices:
+      expose: true
+      type: array<App\OrderContext\Application\DTO\LicenseOrder\LicenseOrderAdditionalDevicesDTO>
+      groups: [ licenseOrder ]
+    payment:
+      expose: true
+      type: App\OrderContext\Application\DTO\LicenseOrder\LicenseOrderPaymentDTO
+      groups: [ licenseOrder ]
+    buyerName:
+      expose: true
+      type: string
+      groups: [ licenseOrder ]
+    buyerVatNumber:
+      expose: true
+      type: string
+      groups: [ licenseOrder ]
+    buyerStreet:
+      expose: true
+      type: string
+      groups: [ licenseOrder ]
+    buyerHouse:
+      expose: true
+      type: string
+      groups: [ licenseOrder ]
+    buyerFlat:
+      expose: true
+      type: string
+      groups: [ licenseOrder ]
+    buyerCity:
+      expose: true
+      type: string
+      groups: [ licenseOrder ]
+    buyerZip:
+      expose: true
+      type: string
+      groups: [ licenseOrder ]

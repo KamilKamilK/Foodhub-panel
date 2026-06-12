@@ -1,0 +1,15 @@
+App\OrderContext\Domain\Entity\ClientLicenseOrder:
+  exclusion_policy: ALL
+  properties:
+    invoiceNo:
+      expose: true
+      type: string
+      groups: [ licenseOrderInvoice ]
+    orderId:
+      expose: true
+      type: string
+      groups: [ licenseOrder, licenseOrderInvoice ]
+    payment:
+      expose: true
+      type: App\OrderContext\Domain\Entity\Payment
+      groups: [ licenseOrder ]

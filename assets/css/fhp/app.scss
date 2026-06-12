@@ -1,0 +1,142 @@
+@import "~bootstrap/scss/functions";
+@import "variables";
+@import "~bootstrap";
+
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+
+body.auth-layout {
+  background-color: $gray-400;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100%;
+
+  main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    .card {
+      margin: auto;
+
+      .brand {
+        text-align: center;
+        margin-bottom: 2rem;
+
+        img {
+          max-height: 100px;
+        }
+      }
+    }
+  }
+}
+
+body.app-layout {
+  aside {
+    position: fixed;
+    top: 0rem;
+    bottom: 0;
+    width: 230px;
+    z-index: 900;
+    min-height: 100%;
+    background-image: linear-gradient($sidebar-bg-start, $sidebar-bg-end);
+    vertical-align: top;
+
+    section.brand {
+      width: 230px;
+      color: #ffffff;
+      text-align: center;
+      padding: 2rem 1.5rem;
+
+      img {
+        max-height: 150px;
+        max-width: 150px;
+      }
+    }
+
+    section.sidebar {
+      margin-top: 1.5rem;
+      color: #ffffff;
+
+      ul {
+        list-style: none;
+        padding-left: 1rem;
+
+        li {
+          line-height: 2rem;
+          height: 2rem;
+
+          span.icon {
+            display: inline-block;
+            width: 1rem;
+            text-align: right;
+          }
+
+          i {
+            padding-right: 0.5rem;
+            font-size: 0.8rem;
+          }
+
+          a {
+            color: #ffffff;
+            padding-left: 0.5rem;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+          }
+
+          a:hover {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+
+  main {
+    margin-left: 230px;
+
+    .main-content {
+      padding: 2rem;
+      margin: 0;
+
+      .card {
+        border: 0;
+      }
+
+      .card-shadowed {
+        box-shadow: 0 1px 3px 0 rgba(85, 85, 85, 0.5);
+      }
+
+      .card-header {
+        color: #4a4a4a;
+        display: flex;
+        border: 0;
+
+        .card-title {
+          flex: 1 1 auto;
+          margin-bottom: 0;
+          font-size: 1.5rem;
+          font-weight: 600;
+        }
+      }
+
+      .table {
+        i {
+          padding-right: 0.3rem;
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+
+  .card-users {
+    margin-top: 1rem;
+  }
+
+  .registration-date {
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+}

@@ -1,0 +1,39 @@
+
+
+@GDEF_Simple = [\space \095-icecream-cup \015-breakfast-group \104-wine-group 
+	\021-ellipsis-menu \054-dinner-group \014-search-icon \046-restaurant 
+	\010-cash-register \036-move-user \075-info \096-delete-pos \100-side-menu-3 
+	\115-ask \099-user-icon \079-menu-mainmenu \063-sale-mainmenu \070-remove 
+	\031-open-the-drawer \112-spagetti-group \008-arrow-up-down \009-copy 
+	\062-password \121-arrow-right \050-composite-product-product \085-xls 
+	\013-authorization-pin \119-plus-1 \023-arrow-2-down 
+	\061-dashboard-mainmenu \117-pos-connect \057-report-mainmenu 
+	\105-tea-group \001-back \103-fish-group \076-mail-user 
+	\033-food-track-business \102-delete-icon \060-list \011-bread-group 
+	\002-acces \044-beer-group \089-coffe-group \114-salad-2-group 
+	\027-change-price-level \081-tablet-vertical \083-settings-mainmenu 
+	\113-salad-1-group \045-drink-group \037-cancel \120-arrow-left \118-licence 
+	\040-calendar \022-image \101-arrow-2-up \108-arrow-down \024-edit-icon 
+	\069-product-by-weight \111-reload \005-cake-2-group \025-cake-1-group 
+	\034-define-own-menu \019-cash-mainmenu \020-edit \059-close-shift 
+	\029-contractors-mainmenu \030-change-pin \064-users \097-user-login 
+	\032-cafe-business \048-multiple-choice \090-save-pos \006-arrow-2-right 
+	\038-cookies-group \055-logout \049-coctail-group \091-copy-icon 
+	\003-arrow-2-left \106-steak-group \026-printer \035-authorization-pin-icon 
+	\043-confirm \058-simple-product-product \074-delete \017-discount-pos 
+	\066-pay-pos \088-pizza-product \080-tablet \077-work \018-cash 
+	\087-pizzeria-business \004-arrow-up \116-tutorial \073-side-menu-2 
+	\107-settings-user \109-other-form-of-payment \039-card \084-other-business 
+	\012-acces-icon \092-info-user \047-download-pdf \082-soup-group 
+	\051-side-menu-1 \071-070-053-icecream-group \086-juice-group 
+	\028-invoice-for-receipt \072-dish-group \110-fruits-3-group 
+	\094-restaurant-business \016-coins \042-fruits-2-group \093-set-product 
+	\068-error2 \065-tiles \067-save \056-products-mainmenu \098-side-menu-4 
+	\041-burger-group \053-error \007-candy-group \eye \eye-slash \drink-still 
+	\eye-2 ];
+
+table GDEF {
+  GlyphClassDef @GDEF_Simple, , , ;
+
+} GDEF;
+

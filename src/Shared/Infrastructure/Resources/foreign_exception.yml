@@ -1,0 +1,19 @@
+parameters:
+  Symfony\Component\HttpKernel\Exception\NotFoundHttpException:
+    code: common.not_found
+    httpCode: 404
+  Symfony\Component\HttpKernel\Exception\BadRequestHttpException:
+    code: common.bad_request
+    httpCode: 400
+  Symfony\Component\PropertyAccess\Exception\InvalidArgumentException:
+    code: common.invalid_argument
+    httpCode: 400
+  Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException:
+    code: common.access_denied
+    httpCode: 403
+  Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException:
+    code: common.method_not_allowed
+    httpCode: 405
+  Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException:
+    code: common.foreign_key_constraint_violation
+    httpCode: 500

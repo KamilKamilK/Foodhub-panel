@@ -1,0 +1,58 @@
+exception:
+  client_user:
+    not_found: "Account user not found."
+    with_token_not_found: "Account user with that token not found."
+    email_not_found: "Account user with that email not found."
+    invalid_email: "Invalid email."
+    not_unique_email: "Account user with this email already exists."
+    creation_failed: "Account user creation failed."
+  client:
+    not_found: "Account not found."
+    installation_failed: "Installation failed."
+    invalid_sub_domain: "Subdomain has to be string. Null or other type given."
+    second_mail_sent: "Second mail is already sent."
+  database:
+    creation_failed: "Database creation failed."
+    grant_all_privileges_failed: "Grant privileges failed."
+  user:
+    not_found: "User not found."
+  dir:
+    not_found: "Selected dir not found."
+  update:
+    apk_is_up_to_date: "Apk Vesrion is up to date"
+    apk_version_is_delighted: "Latest apk version is delighted"
+  request_body_param_converter:
+    symfony_serializer_failure: "Symfony serializer failure during deserialization of param converter object."
+  agreement:
+    not_found: Agreement not found.
+  constraint:
+    not_blank: This field cannot be blank.
+    not_null: This field cannot be null.
+    invalid_value: Incorrect or unhandled parameter value.
+    not_unique: This value is already used.
+    invalid_length: "This value has invalid length. Minimum value: {{ min }}, maximum value: {{ max }}"
+    different_than_regex: Given value does not match regex value defined for this field.
+    invalid_range: "This value is not in valid range. Minimum value: {{ min }}, maximum value: {{ max }}"
+    invalid_email: Invalid email.
+    invalid_date: Invalid date.
+    invalid_date_time: Invalid date time.
+    invalid_choice: Value has to be one of the specified choices.
+    invalid_object: Invalid object.
+    type: "Invalid type {{ type }}."
+  common:
+    constraint_validator: "Input data validation error."
+  decimal_invalid_value: "Invalid value in numeric field."
+  license:
+    license_migration_executed: "License migration already executed."
+    not_found: "License not found."
+    set_not_found: "Set not found."
+    addon_not_found: "Addon not found."
+    additional_device_not_found: "Additional device not found."
+    total_price_mismatch: "Incorrect price provided."
+    unhandled_payment_method: "Unhandled payment method"
+    payment_error: "There was an error processing payment"
+    order_not_found: "Order not found."
+    license_already_assigned: "A license has already been assigned for the specified order"
+    devices_update_error: "An error occurred while updating the number of devices."
+    no_full_periods: "Less than one full period remains until the end of the license. In order to buy additional add-ons, you must prelong the license."
+    upgrade_error: "You can only upgrade for the more expensive package"

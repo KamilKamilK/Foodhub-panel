@@ -1,0 +1,27 @@
+jms_serializer:
+    handlers:
+        datetime:
+            default_format: "Y-m-d\\TH:i:s" # ATOM
+            default_timezone: "UTC" # defaults to whatever timezone set in php.ini or via date_default_timezone_set
+        array_collection:
+            initialize_excluded: false
+    property_naming:
+        id: 'jms_serializer.identical_property_naming_strategy'
+    visitors:
+        json_serialization:
+            options:
+                - JSON_UNESCAPED_SLASHES
+                - JSON_PRESERVE_ZERO_FRACTION
+        json_deserialization:
+            options:
+                - JSON_UNESCAPED_SLASHES
+                - JSON_PRESERVE_ZERO_FRACTION
+
+    metadata:
+        cache: none
+        debug: "%kernel.debug%"
+        auto_detection: false
+        directories:
+            app:
+                namespace_prefix: 'App'
+                path: '%kernel.project_dir%/config/serializer'

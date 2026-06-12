@@ -1,0 +1,22 @@
+App\OrderContext\Application\DTO\LicenseOrder\LicenseOrderPaymentDTO:
+  exclusion_policy: ALL
+  properties:
+    methodType:
+      - Choice: { callback: [ App\Shared\Domain\Enum\Payment\PaymentMethodTypeEnum, getTypes ] }
+      - NotBlank: ~
+      - Type: string
+    methodValue:
+      - Type: string
+      - NotBlank: ~
+    totalPriceNet:
+      - NotBlank: ~
+      - Type: float
+      - GreaterThanOrEqual:
+          value: 0
+    currency:
+      - Choice: { callback: [ App\Shared\Domain\Enum\CurrencyEnum, getTypes ] }
+      - NotBlank: ~
+      - Type: string
+    continueUrl:
+      - NotBlank: ~
+      - Type: string

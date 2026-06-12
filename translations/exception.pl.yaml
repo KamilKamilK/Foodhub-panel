@@ -1,0 +1,58 @@
+exception:
+  client_user:
+    not_found: "Konto nie zostało znalezione."
+    with_token_not_found: "Konto z podanym tokenem nie zostało znalezione."
+    email_not_found: "Konto z podanym adresem email nie zostało znalezione."
+    invalid_email: "Niepoprawny adres email."
+    not_unique_email: "Konto z podanym adresem email już istnieje."
+    creation_failed: "Tworzenie użytkownika nie powiodło się."
+  client:
+    not_found: "Konto nie zostało znalezione."
+    installation_failed: "Instalacja nie powiodła się."
+    invalid_sub_domain: "Subdomena musi być ciągiem znaków. Podano null bądź inny typ."
+    second_mail_sent: "Druga wiadomość została już wysłana."
+  database:
+    creation_failed: "Utworzenie bazy danych nie powiodło się."
+    grant_all_privileges_failed: "Wystąpił błąd podczas nadawania uprawnień."
+  user:
+    not_found: "Użytkownik nie został znaleziony."
+  dir:
+    not_found: "Podana lokalizacja nie istnieje."
+  update:
+    apk_is_up_to_date: "Wersja apk jest aktualna"
+    apk_version_is_delighted: "Wersja najnowszego apk jest uszkodzona"
+  request_body_param_converter:
+    symfony_serializer_failure: "Błąd serializatora Symfony podczas deserializacji obiektu konwertera parametrów."
+  agreement:
+    not_found: Nie znaleziono zgody.
+  constraint:
+    not_blank: To pole nie może być puste.
+    not_null: To pole nie może być nullem.
+    invalid_value: Niepoprawna lub nieobsługiwana wartość parametru.
+    not_unique: Ta wartość jest już używana.
+    invalid_length: "Ta wartość ma niepoprawną długość. Minimalna wartość: {{min}}, maksymalna wartość: {{max}}"
+    different_than_regex: Podana wartość nie odpowiada wartości wyrażenia regularnego zdefiniowanej dla tego pola.
+    invalid_range: "Ta wartość nie jest w prawidłowym zakresie. Minimalna wartość: {{min}}, maksymalna wartość: {{max}}"
+    invalid_email: Niepoprawny email.
+    invalid_date: Nieprawidłowa data.
+    invalid_date_time: Nieprawidłowa data i godzina.
+    invalid_choice: Wartość musi być jedną z określonych opcji.
+    invalid_object: Nieprawidłowy obiekt.
+    type: "Nieprawidłowy typ {{type}}."
+  common:
+    constraint_validator: "Błąd sprawdzania poprawności danych wejściowych."
+  decimal_invalid_value: "Nieprawidłowa wartość w polu numerycznym."
+  license:
+    license_migration_executed: "Migracja licencji została już wykonana."
+    not_found: "Nie znaleziono licencji"
+    set_not_found: "Nie znaleziono zestawu"
+    addon_not_found: "Dodatkowa usługa nie znaleziona."
+    additional_device_not_found: "Dodatkowe urządzenie nie znalezione."
+    total_price_mismatch: "Podano nieprawidłową cenę."
+    unhandled_payment_method: "Nieobsługiwana metoda płatności"
+    payment_error: "Wystąpił błąd podczas przetwarzania płatności"
+    order_not_found: "Zamówienie nie zostało znalezione."
+    license_already_assigned: "Dla podanego zamówienia licencja została już przydzielona"
+    devices_update_error: "Wystąpił błąd podczas aktualizacji ilości urządzeń."
+    no_full_periods: "Do końca licencji pozostał mniej niż jeden pełny okres. Wcelu dokupienia dodatków musisz przedłużyć licencję."
+    upgrade_error: "Podnieść licencję można tylko na droższy pakiet"

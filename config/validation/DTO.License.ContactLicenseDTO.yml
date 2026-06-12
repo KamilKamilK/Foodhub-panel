@@ -1,0 +1,9 @@
+App\LicenseContext\Application\DTO\License\ContactLicenseDTO:
+  exclusion_policy: ALL
+  properties:
+    subdomain:
+      - NotBlank: ~
+      - Type: string
+    contactPhone:
+      - NotBlank: ~
+      - Type: string

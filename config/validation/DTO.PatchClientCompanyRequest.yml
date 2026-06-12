@@ -1,0 +1,47 @@
+App\ClientContext\Application\DTO\PatchClientCompanyRequest:
+  properties:
+    subDomain:
+      - NotBlank: ~
+      - Type: string
+    name:
+      - NotBlank: ~
+      - Type: string
+      - Length:
+          max: 255
+    shortName:
+      - Type: string
+      - Length:
+          max: 255
+    taxIdNumber:
+      - NotBlank: ~
+      - Type: string
+      - Length:
+          max: 50
+    registrationNumber:
+      - Type: string
+      - Length:
+          max: 50
+    street:
+      - Type: string
+      - Length:
+          max: 128
+    buildingNo:
+      - NotBlank: ~
+      - Type: string
+      - Length:
+          max: 16
+    localNo:
+      - Type: string
+      - Length:
+          max: 16
+    zipCode:
+      - NotBlank: ~
+      - Type: string
+      - Length:
+          max: 16
+    city:
+      - NotBlank: ~
+      - Type: string
+    country:
+      - NotBlank: ~
+      - Type: string

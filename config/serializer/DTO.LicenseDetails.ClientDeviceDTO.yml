@@ -1,0 +1,31 @@
+App\ClientContext\Application\DTO\LicenseDetails\ClientDeviceDTO:
+  exclusion_policy: ALL
+  properties:
+    licenseDeviceId:
+      expose: true
+      type: integer
+      groups: [ licenseDetails ]
+    validFrom:
+      expose: true
+      type: string
+      groups: [ licenseDetails ]
+    expirationDate:
+      expose: true
+      type: string
+      groups: [ licenseDetails ]
+    deviceType:
+      expose: true
+      type: string
+      groups: [ licenseDetails ]
+    isActiveOnNextPeriod:
+      expose: true
+      type: boolean
+      groups: [ licenseDetails ]
+    priceMonth:
+      expose: true
+      type: decimalType
+      groups: [ licenseDetails ]
+    priceYear:
+      expose: true
+      type: decimalType
+      groups: [ licenseDetails ]

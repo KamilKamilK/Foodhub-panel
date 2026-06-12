@@ -1,0 +1,7 @@
+App\OrderContext\Application\DTO\LicenseOrder\GenerateResponse:
+  exclusion_policy: ALL
+  properties:
+    url:
+      expose: true
+      type: string
+      groups: [ generateResponse ]

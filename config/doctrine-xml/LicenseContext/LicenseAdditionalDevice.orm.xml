@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping">
+  <entity xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping" name="App\LicenseContext\Domain\Entity\LicenseAdditionalDevice" repository-class="App\LicenseContext\Infrastructure\Persistence\Repository\LicenseAdditionalDeviceRepository" table="lsi_license_additional_device">
+    <id name="id" type="integer">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping" name="createdAt" type="datetime">
+      <gedmo:timestampable xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping" on="create"/>
+    </field>
+    <field xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping" name="updatedAt" type="datetime">
+      <gedmo:timestampable xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping" on="update"/>
+    </field>
+    <field name="priceMonth" type="decimalType" precision="10" scale="2" nullable="true"/>
+    <field name="priceYear" type="decimalType" precision="10" scale="2" nullable="true"/>
+    <field name="currency" type="string" length="3" nullable="true"/>
+    <field name="type" type="string" length="255" nullable="false"/>
+    <many-to-one field="license" target-entity="App\LicenseContext\Domain\Entity\License" inversed-by="additionalDevices">
+      <join-column name="license_id" referenced-column-name="id" on-delete="CASCADE"/>
+    </many-to-one>
+    <one-to-many field="translations" target-entity="App\LicenseContext\Domain\Entity\LicenseAdditionalDeviceTranslation" mapped-by="parent">
+      <cascade>
+        <cascade-persist/>
+        <cascade-remove/>
+      </cascade>
+    </one-to-many>
+    <one-to-many field="clientAdditionalDevices" target-entity="App\ClientContext\Domain\Entity\ClientAdditionalDevice" mapped-by="licenseAdditionalDevice">
+      <cascade>
+        <cascade-persist/>
+      </cascade>
+    </one-to-many>
+  </entity>
+</doctrine-mapping>

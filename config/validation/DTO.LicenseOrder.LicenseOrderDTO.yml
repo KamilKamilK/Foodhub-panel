@@ -1,0 +1,46 @@
+App\OrderContext\Application\DTO\LicenseOrder\LicenseOrderDTO:
+  exclusion_policy: ALL
+  properties:
+    subdomain:
+      - NotBlank: ~
+      - Type: string
+    specialCode:
+      - Type: string
+    licenseId:
+      - NotBlank: ~
+      - Type: integer
+    selectedSetId:
+      - Type: integer
+    period:
+      - Choice: { callback: [ App\Shared\Domain\Enum\License\PeriodEnum, getTypes ] }
+      - NotBlank: ~
+      - Type: string
+    addons:
+      - Type: array
+      - Count:
+          min: 0
+    additionalDevices:
+      - Type: array
+      - Count:
+          min: 1
+      - Valid: ~
+    buyerName:
+      - NotBlank: ~
+      - Type: string
+    buyerVatNumber:
+      - NotBlank: ~
+      - Type: string
+    buyerStreet:
+      - NotBlank: ~
+      - Type: string
+    buyerHouse:
+      - NotBlank: ~
+      - Type: string
+    buyerFlat:
+      - Type: string
+    buyerCity:
+      - NotBlank: ~
+      - Type: string
+    buyerZip:
+      - NotBlank: ~
+      - Type: string

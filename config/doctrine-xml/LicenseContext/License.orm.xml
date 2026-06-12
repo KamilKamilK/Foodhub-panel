@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping">
+  <entity xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping" name="App\LicenseContext\Domain\Entity\License" repository-class="App\LicenseContext\Infrastructure\Persistence\Repository\LicenseRepository" table="lsi_license">
+    <id name="id" type="integer">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping" name="createdAt" type="datetime">
+      <gedmo:timestampable xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping" on="create"/>
+    </field>
+    <field xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping" name="updatedAt" type="datetime">
+      <gedmo:timestampable xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping" on="update"/>
+    </field>
+    <field name="priceMonth" type="decimalType" precision="10" scale="2" nullable="true"/>
+    <field name="priceYear" type="decimalType" precision="10" scale="2" nullable="true"/>
+    <field name="currency" type="string" length="3" nullable="true"/>
+    <field name="isVisible" type="boolean"/>
+    <field name="isActive" type="boolean"/>
+    <field name="isTrial" type="boolean"/>
+    <field name="includedFoodHubOrder" type="boolean" column="included_food_hub_order" nullable="false">
+      <options>
+        <option name="default">false</option>
+      </options>
+    </field>
+    <field name="includedPoses" type="integer" length="5"/>
+    <field name="menuLimit" type="integer" length="5" nullable="true"/>
+    <field name="position" type="integer" length="10"/>
+    <one-to-many field="translations" target-entity="App\LicenseContext\Domain\Entity\LicenseTranslation" mapped-by="parent">
+      <cascade>
+        <cascade-persist/>
+      </cascade>
+    </one-to-many>
+    <one-to-many field="bonuses" target-entity="App\LicenseContext\Domain\Entity\LicenseBonus" mapped-by="license">
+      <cascade>
+        <cascade-persist/>
+      </cascade>
+    </one-to-many>
+    <one-to-many field="addons" target-entity="App\LicenseContext\Domain\Entity\LicenseAddon" mapped-by="license">
+      <cascade>
+        <cascade-persist/>
+      </cascade>
+    </one-to-many>
+    <one-to-many field="additionalDevices" target-entity="App\LicenseContext\Domain\Entity\LicenseAdditionalDevice" mapped-by="license">
+      <cascade>
+        <cascade-persist/>
+      </cascade>
+    </one-to-many>
+    <one-to-many field="clientLicenses" target-entity="App\ClientContext\Domain\Entity\ClientLicense" mapped-by="license">
+      <cascade>
+        <cascade-persist/>
+      </cascade>
+    </one-to-many>
+  </entity>
+</doctrine-mapping>

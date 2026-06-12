@@ -1,0 +1,15 @@
+App\ClientContext\Application\DTO\License\UpdateLicenseAddonsDTO:
+  exclusion_policy: ALL
+  properties:
+    addonType:
+      expose: true
+      type: string
+      groups: [ licenseUpdate ]
+    addonCategory:
+      expose: true
+      type: string
+      groups: [ licenseUpdate ]
+    isActiveOnNextPeriod:
+      expose: true
+      type: boolean
+      groups: [ licenseUpdate ]

@@ -1,0 +1,8 @@
+registration:
+  validation:
+    phone: "Błędny numer telefonu, np. 123456789"
+    password: "Hasło powinno zawierać przynajmniej 8 znaków, w tym 1 dużą literę i cyfrę."
+    repeat_password: "Podane hasła nie są identyczne"
+
+common:
+  incorrect_special_code: "Błędny kod specjalny"

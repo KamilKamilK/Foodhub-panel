@@ -1,0 +1,23 @@
+index:
+  path: /
+  controller: App\Shared\Infrastructure\Http\MainController::index
+
+lsi_register_first:
+  path: /register-first-step
+  controller: App\ClientContext\Infrastructure\Http\RegistrationController::registerFirstStep
+  methods: [GET, POST]
+
+lsi_register_second:
+  path: /{type}/register-second-step
+  controller: App\ClientContext\Infrastructure\Http\RegistrationController::registerSecondStep
+  methods: [GET, POST]
+
+lsi_register_confirm:
+  path: /confirm
+  controller: App\ClientContext\Infrastructure\Http\RegistrationController::confirm
+  methods: GET
+
+lsi_resend_mail:
+  path: /resend
+  controller: App\ClientContext\Infrastructure\Http\RegistrationController::resendMail
+  methods: GET

@@ -1,0 +1,35 @@
+<?php declare(strict_types=1);
+
+namespace App\LicenseContext\Domain\Entity;
+
+use Gedmo\Timestampable\Traits\TimestampableEntity;
+
+class LicenseAddonTranslation
+{
+    use TimestampableEntity;
+
+    private ?int $id;
+    private ?string $name;
+    private string $locale;
+    private LicenseAddon $parent;
+
+    public static function create(string $locale, string $name): self
+    {
+        $t = new self();
+        $t->locale = $locale;
+        $t->name   = $name;
+        return $t;
+    }
+
+    public function getId(): ?int        { return $this->id; }
+    public function getName(): ?string   { return $this->name; }
+    public function getLocale(): string  { return $this->locale; }
+    public function getParent(): LicenseAddon { return $this->parent; }
+
+    /** @internal For Doctrine bidirectional ORM management — do not call from application code. */
+    public function setParent(LicenseAddon $parent): self
+    {
+        $this->parent = $parent;
+        return $this;
+    }
+}

@@ -1,0 +1,145 @@
+settings:
+  title: FoodHub Panel
+
+db:
+  user:
+    email: Email
+    password: Password
+
+router:
+  layout:
+    app:
+      sidebar:
+        client_list: Clients
+        logout: Logout
+  auth:
+    index:
+      form:
+        login: Sign In
+        failed: Incorrect login or password
+  client:
+    index:
+      card:
+        title: License List
+      table:
+        number: '#'
+        subdomain: Subdomain
+        company_short_name: Company
+        registration_date: Date of registration
+        expiration_date: License to
+        license_name: License
+        button:
+          edit: Edit
+    edit:
+      card:
+        title: License
+      client_card:
+        street: St
+        tax_id_number: NIP
+        registration_number: REGON
+        registration_date: Date of registration
+      client_users_card:
+        title: Users
+        table:
+          number: '#'
+          email: Email
+          active: Active
+      form:
+        license_type: License type
+        expiration_date: License to
+        submit: Submit
+        failed: The form contains errors
+
+registration:
+  title: Register
+  desc:
+    first: "Please select your business type so that we can tailor the application to your needs"
+    second: "Read the regulations and accept the necessary consents"
+    third: "Complete your data. \n Please enter your email correctly so that we can send you a verification message"
+    resend: "Didn’t received activation link?"
+  place:
+    typeError: Please select your business type
+  process:
+    success-title: "Registration was successful."
+    error-title: "Registration failed."
+    success-description: "A message with an activation link has been sent to your e-mail address."
+    error: "Registration has not succeeded. Contact Us to resolve the problem."
+    error_form: "Form contains errors. Please correct them."
+    required_agreement: "Agreement is required!"
+  confirmation:
+    success: "Email address confirmed."
+    error: "Email confirmation failed."
+  modal:
+    title: "Do you want to fill your account with a sample product base?"
+    description: "You can delete this data at any time."
+    yes: "Yes"
+    no: "No, thanks"
+  bottom:
+    have_account: "Already have an account?"
+    sign_in: "Sign in"
+    copyright: "Copyright © %year% LSI Software S.A. All Rights Reserved."
+places:
+  types:
+    other: Other
+    restaurant: Restaurant
+    pizzeria: Pizzeria
+    food-truck: Food Truck
+    cafe: Cafe
+
+action:
+  save: Next
+  register: Register
+  signin: Go to application
+  resend: Send message again
+
+form:
+  register:
+    placeholder:
+      business_type: Business type
+      user_name: First name
+      user_surname: Surname
+      phone: Phone number
+      email: Email
+      password_first: Password
+      password_second: Repeat password
+      specialCode: Special code
+confirmation:
+  title: Status
+
+license:
+  order:
+    license: "Purchase of a license"
+    addons: "Purchase of license add-ons"
+
+invoice:
+  title: VAT invoice
+  issuedAt: Issue date
+  soldAt: Sell date
+  billFrom: Seller
+  billTo: Buyer
+  tax: TAX
+  index: Index
+  product: Item or service name
+  unit: Unit
+  quantity: Quantity
+  description: Description
+  unitFinalPriceGross: Unit price gross
+  unitFinalPriceNet: Net price
+  taxRate: Tax rate
+  taxRateValue: Tax value
+  finalPriceGross: Price gross
+  finalPriceNet: Price netto
+  toPay: Total
+  including: Includes
+  total: Paid
+  cashier: Cashier
+  pos: POS
+  paymentStatus: Payment status
+  paymentMethods: Payment method
+  paymentTerm:  Payment term
+  amountInWord: In words
+  sellerSign: Signature of the qualifying person to be issued
+  buyerSign: Signature of the person authorized to collect
+  licenseTitel: Package
+  addonsTitle: Additional services
+  itemUnit: pc

@@ -1,0 +1,33 @@
+parameters:
+  Symfony\Component\Validator\Constraints\NotBlank:
+    code: constraint.not_blank
+  Symfony\Component\Validator\Constraints\NotNull:
+    code: constraint.not_null
+  Symfony\Component\Form\Extension\Validator\Constraints\Form:
+    code: constraint.invalid_value
+  Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+    code: constraint.not_unique
+  App\Shared\Infrastructure\Validator\Constraints\DtoUniqueEntity:
+    code: constraint.not_unique
+  Symfony\Component\Validator\Constraints\Length:
+    code: constraint.invalid_length
+  Symfony\Component\Validator\Constraints\Regex:
+    code: constraint.different_than_regex
+  Symfony\Component\Validator\Constraints\Range:
+    code: constraint.invalid_range
+  Symfony\Component\Validator\Constraints\Email:
+    code: constraint.invalid_email
+  Symfony\Component\Validator\Constraints\Date:
+    code: constraint.invalid_date
+  Symfony\Component\Validator\Constraints\DateTime:
+    code: constraint.invalid_date_time
+  Symfony\Component\Validator\Constraints\Choice:
+    code: constraint.invalid_choice
+  App\Shared\Infrastructure\Validator\Constraints\EntityChoice:
+    code: constraint.invalid_choice
+  Symfony\Component\Validator\Constraints\Valid:
+    code: constraint.invalid_object
+  Symfony\Component\Validator\Constraints\Type:
+    code: constraint.type
+  Symfony\Component\Validator\Constraints\Callback:
+    code: constraint.callback

@@ -1,0 +1,64 @@
+{% form_theme form 'form_div_layout.html.twig' %}
+<div class="row min-height">
+    <div class="col-12 col-lg-6">
+        <section id="signup" class="signup-section">
+            <div class="mx-auto text-center form-container">
+                {{ form_start(form) }}
+                <p class="title-main">
+                    {{ 'registration.title' | trans }}
+                </p>
+                <p class="title-description">
+                    {{ 'registration.desc.first' | trans }}
+                </p>
+                <div class="flex">
+                    <div style="position: absolute; top: 10px">{{ form_errors(form.type) }}{{ form_widget(form.type) }}</div>
+                    <div class="place-type-error">{{ 'registration.place.typeError' | trans }}</div>
+                    {% for type in types %}
+                        <div class="tile" type="{{ type.label }}">
+                            <div class="tile-content">
+                                <span>{{ ('places.types.'~type.label) | trans }}</span>
+                                <i class="font-weight-bold flaticon {{ type.icon }}"></i>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="form-group bottom-height">
+                    <button id="submit-place" class="button-register">{{ 'action.save' | trans }}</button>
+                </div>
+                {{ form_end(form) }}
+            </div>
+
+            <script route="{{ path('lsi_register_first') }}"></script>
+            {{ encore_entry_script_tags('js/lp/events') }}
+        </section>
+        <section id="bottom" class="bottom-section">
+            <div class="login">
+                {{ 'registration.bottom.have_account' | trans }}
+                <a href="{{ appUrl ~ '/#/auth/login' }}">{{ 'registration.bottom.sign_in' | trans }}</a>
+            </div>
+            <div class="copyrights">
+                {{ 'registration.bottom.copyright' | trans({'%year%': date('now')|date('Y')}) }}
+            </div>
+        </section>
+    </div>
+    <div class="d-none d-lg-block col-lg-6 image-background-container min-height"></div>
+</div>
+
+<div class="modal fade" id="fill-modal" tabindex="-1" role="dialog" aria-labelledby="fill-modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                {{ 'registration.modal.title' | trans }}
+                <div class="small">{{ 'registration.modal.description' | trans }}</div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <div onclick="submitWithoutProducts(event);" class="btn btn-light">
+                    {{ 'registration.modal.no' | trans }}
+                </div>
+                <div onclick="submitWithProducts(event);" class="btn btn-success">
+                    {{ 'registration.modal.yes' | trans }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

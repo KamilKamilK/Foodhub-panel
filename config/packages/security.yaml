@@ -1,0 +1,43 @@
+security:
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    password_hashers:
+        App\Shared\Domain\Entity\User:
+            algorithm: auto
+    providers:
+        main:
+            entity:
+                class: App\Shared\Domain\Entity\User
+                property: email
+    firewalls:
+        dev:
+            pattern: ^/(css|images|js)/
+            security: false
+        main:
+            pattern: ^(/panel/)|(/doc)|(/_(profiler|wdt))
+            lazy: true
+            provider: main
+            form_login:
+                login_path: /panel/auth
+                check_path: /panel/auth/login
+                default_target_path: /panel/client/list
+                username_parameter: login[email]
+                password_parameter: login[password]
+            logout:
+                path: /panel/logout
+                target: /panel/auth
+
+            # activate different ways to authenticate
+            # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+            # https://symfony.com/doc/current/security/impersonating_user.html
+            # switch_user: true
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+        - { path: ^/panel/auth, roles: PUBLIC_ACCESS, ips: [212.160.97.1, ::1, 127.0.0.1, 0.0.0.0]}
+        - { path: ^/panel/auth/login, roles: PUBLIC_ACCESS }
+        - { path: ^/_profiler, role: ROLE_USER }
+        - { path: ^/_wdt, role: ROLE_USER }
+        - { path: ^/doc, role: ROLE_USER }
+        - { path: ^/panel/client, role: ROLE_USER }

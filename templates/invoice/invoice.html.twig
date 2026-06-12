@@ -1,0 +1,189 @@
+{% extends 'invoice/base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href={{ publicDir ~ "/css/bootstrap.min.css" }}>
+    <link rel="stylesheet" href={{ publicDir ~ "/css/invoice-pdf-styles.css" }}>
+{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6"></div>
+            <div class="col-xs-6 text-right invoice-dates margin-bottom-md">
+                <p>
+                    {{ 'invoice.issuedAt' |trans }}: {{ order.payment.createdAt |date('d-m-Y') }}
+                </p>
+                <p>
+                    {{ 'invoice.soldAt' |trans }}: {{ order.payment.paidAt |date('d-m-Y') }}
+                </p>
+            </div>
+        </div>
+        <div class="card-body ml-2 mr-2">
+            <div class="row margin-bottom-md invoice-personals d-print-flex">
+                <div class="col-xs-6">
+                    <p class="font-weight-bold">{{ 'invoice.billFrom'|trans }}</p>
+                    <hr/>
+                    <p>LSI Software S.A.</p>
+                    <p>{{ 'invoice.tax'|trans }}: 7251697775 </p>
+                    <p>Przybyszewskiego 176/178</p>
+                    <p>93-120 Łódź</p>
+                </div>
+                <div class="col-xs-6">
+                    <p class="font-weight-bold">{{ 'invoice.billTo'|trans }}</p>
+                    <hr/>
+                    <p>{{ order.buyerName }}</p>
+                    <p>{{ 'invoice.tax'|trans }}: {{ order.buyerVatNumber }}</p>
+                    <p>{{ order.buyerStreet }} {{ order.buyerHouse }}{% if (order.buyerFlat ?? null) %}/{% endif %}{{ order.buyerFlat }}
+                    </p>
+                    <p>{{ order.buyerZip }} {{ order.buyerCity }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 text-center margin-bottom-sm">
+                    <h3>{{ 'invoice.title' |trans }} {{ order.invoiceNo }}</h3>
+                </div>
+            </div>
+            <div class="row positions-list margin-bottom-xl">
+                <div class="col-xs-12">
+                    <table class="table ui-table-summary" id="invoice">
+                        <thead>
+                        <tr>
+                            <th class="text-center" scope="col" colspan="1">{{ 'invoice.index'|trans }}</th>
+                            <th class="text-center" scope="col" colspan="2">{{ 'invoice.product'|trans }}</th>
+                            <th class="text-center" scope="col" colspan="1">{{ 'invoice.unit'|trans }}</th>
+                            <th class="text-center" scope="col" colspan="1">{{ 'invoice.quantity'|trans }}</th>
+                            <th class="text-center" scope="col" colspan="2">{{ 'invoice.unitFinalPriceGross'|trans }}</th>
+                            <th class="text-center" scope="col" colspan="1">{{ 'invoice.taxRate'|trans }}</th>
+                            <th class="text-center" scope="col" colspan="1">{{ 'invoice.taxRateValue'|trans }}</th>
+                            <th class="text-center" scope="col" colspan="2">{{ 'invoice.finalPriceNet'|trans }}</th>
+                            <th class="text-center" scope="col" colspan="2">{{ 'invoice.finalPriceGross'|trans }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% if order.getLicenseTotalPriceNet().value > 0 %}
+                            <tr>
+                                <td class="text-center" colspan="1">1</td>
+                                <td class="text-left" colspan="2">
+                                    {{ 'invoice.licenseTitel'|trans }} "{{ order.license.getTranslation(app.request.locale).name }}"
+                                </td>
+                                <td class="text-left" colspan="1">{{ 'invoice.itemUnit'|trans }}</td>
+                                <td class="text-right" colspan="1">1</td>
+                                <td class="text-right" colspan="2">{{ order.getLicenseTotalPriceGross().value | number_format(2, ',') }}</td>
+                                <td class="text-right" colspan="1">{{ '23%' }}</td>
+                                <td class="text-right" colspan="1">{{ order.getLicenseTotalTax().value | number_format(2, ',') }}</td>
+                                <td class="text-right" colspan="2">{{ order.getLicenseTotalPriceNet().value | number_format(2, ',') }}</td>
+                                <td class="text-right" colspan="2">{{ order.getLicenseTotalPriceGross().value | number_format(2, ',') }}</td>
+                            </tr>
+                        {% endif %}
+
+                        {% if order.getServicesTotalPriceNet().value > 0 %}
+                            <tr>
+                                <td class="text-center" colspan="1">1</td>
+                                <td class="text-left" colspan="2">
+                                    {{ 'invoice.addonsTitle'|trans }}
+                                </td>
+                                <td class="text-left" colspan="1">{{ 'invoice.itemUnit'|trans }}</td>
+                                <td class="text-right" colspan="1">1</td>
+                                <td class="text-right" colspan="2">{{ order.getServicesTotalPriceGross().value | number_format(2, ',') }}</td>
+                                <td class="text-right" colspan="1">{{ '23%' }}</td>
+                                <td class="text-right" colspan="1">{{ order.getServicesTotalTax().value | number_format(2, ',') }}</td>
+                                <td class="text-right" colspan="2">{{ order.getServicesTotalPriceNet().value | number_format(2, ',') }}</td>
+                                <td class="text-right" colspan="2">{{ order.getServicesTotalPriceGross().value | number_format(2, ',') }}</td>
+                            </tr>
+                        {% endif %}
+
+                        <tr class="totalizer-row">
+                            <td colspan="5"></td>
+                            <td colspan="2" class="font-weight-bold text-right">{{ 'invoice.including' |trans }}</td>
+                            <td colspan="1" class="text-right totalizer-col">{{ '23%' }}</td>
+                            <td colspan="1" class="text-right totalizer-col">{{ (order.payment.totalPriceGross.value - order.payment.totalPriceNet.value) | number_format(2, ',') }}</td>
+                            <td colspan="2" class="text-right totalizer-col">{{ order.payment.totalPriceNet.value | number_format(2, ',') }}</td>
+                            <td colspan="2" class="text-right totalizer-col">{{ order.payment.totalPriceGross.value | number_format(2, ',') }}</td>
+                        </tr>
+
+                        <tr class="totalizer-row">
+                            <td colspan="5"></td>
+                            <td colspan="2" class="font-weight-bold text-right">{{ 'invoice.toPay' |trans }}</td>
+                            <td colspan="1" class="totalizer-col"></td>
+                            <td colspan="1" class="text-right totalizer-col">{{ (order.payment.totalPriceGross.value - order.payment.totalPriceNet.value) | number_format(2, ',') }}</td>
+                            <td colspan="2" class="text-right totalizer-col">{{ order.payment.totalPriceNet.value | number_format(2, ',') }}</td>
+                            <td colspan="2" class="text-right totalizer-col">{{ order.payment.totalPriceGross.value | number_format(2, ',') }}</td>
+                        </tr>
+                        {% for i in 0..3 %}
+                            <tr class="border-none">
+                                <td colspan="13" {% if i == 3 %}id="target"{% endif %}></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <table id="elem-to-move" class="table" style="width: 104%; margin-left: -2%">
+                <tbody>
+                    <tr class="border-none">
+                        <td>
+                            <div class="row">
+                                <div class="col-xs-5 custom-font-size">{{ 'invoice.paymentMethods' |trans }}</div>
+                                <div class="col-xs-5 text-right font-weight-bold custom-font-size">
+                                    Online
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-5 custom-font-size">{{ 'invoice.paymentTerm' |trans }}</div>
+                                <div class="col-xs-5 text-right font-weight-bold custom-font-size">{{ order.payment.paidAt | date('d-m-Y') }}</div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="row">
+                                <div class="col-xs-2"></div>
+                                <div class="col-xs-9 total-box" style="margin-left: 20px;">
+                                    <div class="row">
+                                        <div class="col-xs-6 text-left padding-bottom-sm">
+                                            {{ 'invoice.total' |trans }}
+                                        </div>
+                                        <div class="col-xs-6 price text-right">
+                                            {{ order.payment.totalPriceGross.value | number_format(2, ',') }}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="in-words col-xs-12 text-right">
+                                            <span>{{ 'invoice.amountInWord' |trans }}: {{ inWords }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="border-none"><td></td></tr>
+                    <tr class="border-none"><td></td></tr>
+                    <tr class="border-none">
+                        <td>
+                            <div class="row">
+                                <div class="col-xs-10">
+                                    <div class="seller-sign">
+                                        {{ 'invoice.sellerSign'|trans }}
+                                    </div>
+                                </div>
+                                <div class="col-xs-2"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="row">
+                                <div class="col-xs-2"></div>
+                                <div class="col-xs-10">
+                                    <div class="buyer-sign text-right">
+                                        {{ 'invoice.buyerSign'|trans }}
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ publicDir ~ "/js/transformPdf.js" }}"></script>
+{% endblock %}

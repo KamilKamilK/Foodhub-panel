@@ -1,0 +1,71 @@
+{% extends 'layout/app.html.twig' %}
+
+{% block body %}
+
+    <div class="card card-shadowed">
+        <div class="card-header">
+            <div class="card-title">
+                <span>{{ 'router.client.edit.card.title'|trans }} {{ client.company.shortName }}</span>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <div class="card card-shadowed">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <span>{{ client.company.name }}</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="col">
+                                <p>{{ 'router.client.edit.client_card.street'|trans }}. {{ client.address.address }}</p>
+                                <p>{{ client.address.zipCode }}, {{ client.address.city }}</p>
+                                <p>{{ 'router.client.edit.client_card.tax_id_number'|trans }}: {{ client.company.taxIdNumber }}</p>
+                                <p>{{ 'router.client.edit.client_card.registration_number'|trans }}: {{ client.company.registrationNumber }}</p>
+                                <p class="registration-date">{{ 'router.client.edit.client_card.registration_date'|trans }}: {{ client.createdAt|date('Y-m-d') }}</p>
+                            </div>
+                            <div class="col"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    {{ form(form) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="card card-shadowed card-users">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <span>{{ 'router.client.edit.client_users_card.title'|trans }}</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th scope="col">{{ 'router.client.edit.client_users_card.table.number'|trans }}</th>
+                                    <th scope="col">{{ 'router.client.edit.client_users_card.table.email'|trans }}</th>
+                                    <th scope="col">{{ 'router.client.edit.client_users_card.table.active'|trans }}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for user in client.users %}
+                                    <tr>
+                                        <th>{{ loop.index }}</th>
+                                        <td>{{ user.email }}</td>
+                                        <td>{{ user.active ? 'Yes':'No' }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

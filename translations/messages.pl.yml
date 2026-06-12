@@ -1,0 +1,145 @@
+settings:
+  title: FoodHub Panel
+
+db:
+  user:
+    email: Email
+    password: Hasło
+
+router:
+  layout:
+    app:
+      sidebar:
+        client_list: Klienci
+        logout: Wyloguj się
+  auth:
+    index:
+      form:
+        login: Zaloguj się
+        failed: Nieprawidłowy login lub hasło
+  client:
+    index:
+      card:
+        title: Lista licencji
+      table:
+        number: '#'
+        subdomain: Subdomena
+        company_short_name: Firma
+        registration_date: Data rejestracji
+        expiration_date: Licencja do
+        license_name: Licencja
+        button:
+          edit: Edytuj
+    edit:
+      card:
+        title: Licencja
+      client_card:
+        street: ul
+        tax_id_number: NIP
+        registration_number: REGON
+        registration_date: Data rejestracji
+      client_users_card:
+        title: Użytkownicy
+        table:
+          number: '#'
+          email: Email
+          active: Aktywny
+      form:
+        license_type: Typ licencji
+        expiration_date: Licencja do
+        submit: Zatwierdź
+        failed: Formularz zawiera błędy
+
+registration:
+  title: Rejestracja
+  desc:
+    first: "Wybierz swój rodzaj działalności, abyśmy mogli dostosować aplikację do Twoich potrzeb"
+    second: "Zapoznaj się z regulaminem i zaakceptuj niezbędne zgody"
+    third: "Uzupełnij swoje dane. \n Podaj poprawnie swój adres e-mail, abyśmy mogli wysłać Ci wiadomość weryfikacyjną"
+    resend: "Nie otrzymałeś linku aktywacyjnego?"
+  place:
+    typeError: Wybierz swój rodzaj działalności
+  process:
+    success-title: "Rejestracja powiodła się."
+    error-title: "Rejestracja nie udała się."
+    success-description: "Na twój adres email została wysłana wiadomość z linkiem potwierdzającym poprawność wprowadzonego adresu email."
+    error: "Rejestracja nie powiodła się. Prosimy o kontakt w celu rozwiązania problemu."
+    error_form: "Formularz zawiera błędy. Prosimy o poprawienie."
+    required_agreement: "Zgoda jest obowiązkowa!"
+  confirmation:
+    success: "Potwierdzono adres email."
+    error: "Potwierdzenie adresu email nie powiodło się."
+  modal:
+    title: "Czy chcesz wypełnić swoje konto przykładową bazą produktów?"
+    description: "W każdej chwili możesz usunąć te dane."
+    yes: "Tak"
+    no: "Nie, dziękuję"
+  bottom:
+    have_account: "Posiadasz już konto?"
+    sign_in: "Zaloguj się"
+    copyright: "Copyright © %year% LSI Software S.A. Wszelkie prawa zastrzeżone."
+places:
+  types:
+    other: Inne
+    restaurant: Restauracja
+    pizzeria: Pizzeria
+    food-truck: Food Truck
+    cafe: Kawiarnia
+
+action:
+  save: Kontynuuj
+  register: Zarejestruj
+  signin: Przejdź do aplikacji
+  resend: Wyślij wiadomość ponownie
+
+form:
+  register:
+    placeholder:
+      business_type: Typ lokalu
+      user_name: Imię
+      user_surname: Nazwisko
+      phone: Telefon
+      email: Email
+      password_first: Hasło
+      password_second: Powtórz hasło
+      specialCode: Specjalny kod
+confirmation:
+  title: Status
+
+license:
+  order:
+    license: "Zakup licencji"
+    addons: "Zakup dodatków do licencji"
+
+invoice:
+  title: Faktura VAT
+  issuedAt: Data wystawienia
+  soldAt: Data wykonania usługi
+  billFrom: Sprzedawca
+  billTo: Nabywca
+  tax: NIP
+  index: L.p.
+  product: Nazwa towaru lub usługi
+  unit: Jm
+  quantity: Ilość
+  description: Uwagi
+  unitFinalPriceGross: Cena brutto
+  unitFinalPriceNet: Cena netto
+  taxRate: Stawka VAT
+  taxRateValue: Kwota VAT
+  finalPriceGross: Wartość brutto
+  finalPriceNet: Wartość netto
+  toPay: Razem
+  including: W tym
+  total: Zapłacono
+  cashier: Kasjer
+  pos: POS
+  paymentStatus: Status płatności
+  paymentMethods: Metoda płatności
+  paymentTerm: Termin płatności
+  amountInWord: Słownie
+  sellerSign: Podpis osoby uprawniającej do wystawienia
+  buyerSign: Podpis osoby upoważnionej do odbioru
+  licenseTitel: Pakiet
+  addonsTitle: Dodatkowe usługi
+  itemUnit: szt

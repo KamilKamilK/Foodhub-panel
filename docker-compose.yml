@@ -1,0 +1,40 @@
+version: '3.7'
+
+services:
+  app:
+    build: ./
+    container_name: fhp_app
+    ports:
+      - target: 80
+        published: 8002
+        protocol: tcp
+#      - 8002:8080 #8001 is default port for kubernetes dashboard forward
+    restart: always
+    volumes:
+      - .docker/php/php.ini:/usr/local/etc/php/conf.d/php.ini
+      - .:/var/www:rw
+      - /var/www/vendor
+      - /var/www/var
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres:9.6
+    container_name: fhp_postgres
+    ports:
+      - 5430:5432
+    restart: always
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - fhp_postgres:/var/lib/postgresql/data
+    networks:
+      - default
+
+volumes:
+  fhp_postgres:
+
+networks:
+  default:
+    driver: bridge

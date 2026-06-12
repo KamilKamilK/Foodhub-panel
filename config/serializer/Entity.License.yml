@@ -1,0 +1,52 @@
+App\LicenseContext\Domain\Entity\License:
+  exclusion_policy: ALL
+  properties:
+    id:
+      expose: true
+      type: integer
+      groups: [ licenseGet ]
+    priceMonth:
+      expose: true
+      type: decimalType
+      groups: [ licenseGet ]
+    priceYear:
+      expose: true
+      type: decimalType
+      groups: [ licenseGet ]
+    currency:
+      expose: true
+      type: string
+      groups: [ licenseGet ]
+    includedPoses:
+      expose: true
+      type: string
+      groups: [ licenseGet ]
+    menuLimit:
+      expose: true
+      type: string
+      groups: [ licenseGet ]
+    includedFoodHubOrder:
+      expose: true
+      type: boolean
+      groups: [ licenseGet ]
+    bonuses:
+      expose: true
+      type: ArrayCollection<App\LicenseContext\Domain\Entity\LicenseBonus>
+      groups: [ licenseGet ]
+    additionalDevices:
+      expose: true
+      type: ArrayCollection<App\LicenseContext\Domain\Entity\LicenseAdditionalDevice>
+      groups: [ licenseGet ]
+    addons:
+      expose: true
+      type: ArrayCollection<App\LicenseContext\Domain\Entity\LicenseAddon>
+      groups: [ licenseGet ]
+  virtual_properties:
+    name:
+      type: string
+      exp: object.getTranslation(service('app.locale_service')).getName()
+      groups: [ licenseGet ]
+    description:
+      type: string
+      exp: object.getTranslation(service('app.locale_service')).getDescription()
+      groups: [ licenseGet ]

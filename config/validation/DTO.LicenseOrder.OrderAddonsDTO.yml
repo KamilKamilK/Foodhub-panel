@@ -1,0 +1,38 @@
+App\OrderContext\Application\DTO\LicenseOrder\OrderAddonsDTO:
+  exclusion_policy: ALL
+  properties:
+    subdomain:
+      - NotBlank: ~
+      - Type: string
+    specialCode:
+      - Type: string
+      - App\Shared\Infrastructure\Form\Validator\SpecialCode\SpecialCode: ~
+    addons:
+      - Type: array
+      - Count:
+          min: 0
+    additionalDevices:
+      - Type: array
+      - Count:
+          min: 1
+      - Valid: ~
+    buyerName:
+      - NotBlank: ~
+      - Type: string
+    buyerVatNumber:
+      - NotBlank: ~
+      - Type: string
+    buyerStreet:
+      - NotBlank: ~
+      - Type: string
+    buyerHouse:
+      - NotBlank: ~
+      - Type: string
+    buyerFlat:
+      - Type: string
+    buyerCity:
+      - NotBlank: ~
+      - Type: string
+    buyerZip:
+      - NotBlank: ~
+      - Type: string

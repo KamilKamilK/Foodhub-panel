@@ -1,0 +1,11 @@
+App\LicenseContext\Application\DTO\License\ContactLicenseDTO:
+  exclusion_policy: ALL
+  properties:
+    subdomain:
+      expose: true
+      type: string
+      groups: [ licenseContact ]
+    contactPhone:
+      expose: true
+      type: string
+      groups: [ licenseContact ]

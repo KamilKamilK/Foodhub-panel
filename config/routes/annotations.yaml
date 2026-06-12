@@ -1,0 +1,1 @@
+# Routes with #[Route] attributes are auto-loaded by Kernel::configureRoutes()

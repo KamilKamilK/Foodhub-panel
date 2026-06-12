@@ -1,0 +1,7 @@
+App\MerchantContext\Application\DTO\SpecialCodeAvailabilityDTO:
+  exclusion_policy: ALL
+  properties:
+    isAvailable:
+      expose: true
+      type: boolean
+      groups: [ merchantGet ]

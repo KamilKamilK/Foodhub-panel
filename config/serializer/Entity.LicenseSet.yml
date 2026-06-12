@@ -1,0 +1,32 @@
+App\LicenseContext\Domain\Entity\LicenseSet:
+  exclusion_policy: ALL
+  properties:
+    id:
+      expose: true
+      type: integer
+      groups: [ licenseGet ]
+    price:
+      expose: true
+      type: decimalType
+      groups: [ licenseGet ]
+    currency:
+      expose: true
+      type: string
+      groups: [ licenseGet ]
+  virtual_properties:
+    name:
+      type: string
+      exp: object.getTranslation(service('app.locale_service')).getName()
+      groups: [ licenseGet ]
+    description:
+      type: string
+      exp: object.getTranslation(service('app.locale_service')).getDescription()
+      groups: [ licenseGet ]
+    btnName:
+      type: string
+      exp: object.getTranslation(service('app.locale_service')).getBtnName()
+      groups: [ licenseGet ]
+    btnUrl:
+      type: string
+      exp: object.getTranslation(service('app.locale_service')).getBtnUrl()
+      groups: [ licenseGet ]

@@ -1,0 +1,23 @@
+App\OrderContext\Application\DTO\LicenseOrder\LicenseOrderPaymentDTO:
+  exclusion_policy: ALL
+  properties:
+    methodType:
+      expose: true
+      type: string
+      groups: [ licenseOrder ]
+    methodValue:
+      expose: true
+      type: string
+      groups: [ licenseOrder ]
+    totalPriceNet:
+      expose: true
+      type: float<2>
+      groups: [ licenseOrder ]
+    currency:
+      expose: true
+      type: string
+      groups: [ licenseOrder ]
+    continueUrl:
+      expose: true
+      type: string
+      groups: [ licenseOrder ]

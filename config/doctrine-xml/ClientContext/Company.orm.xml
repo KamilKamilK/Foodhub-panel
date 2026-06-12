@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping">
+  <embeddable name="App\ClientContext\Domain\Entity\Company">
+    <field name="name" type="string" length="255" nullable="true"/>
+    <field name="shortName" type="string" length="255" nullable="true"/>
+    <field name="taxIdNumber" type="string" length="50" nullable="true"/>
+    <field name="registrationNumber" type="string" length="50" nullable="true"/>
+  </embeddable>
+</doctrine-mapping>

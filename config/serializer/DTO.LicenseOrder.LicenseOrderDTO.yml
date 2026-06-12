@@ -1,0 +1,15 @@
+App\OrderContext\Application\DTO\LicenseOrder\LicenseOrderDTO:
+  exclusion_policy: ALL
+  properties:
+    licenseId:
+      expose: true
+      type: integer
+      groups: [ licenseOrder ]
+    selectedSetId:
+      expose: true
+      type: integer
+      groups: [ licenseOrder ]
+    period:
+      expose: true
+      type: string
+      groups: [ licenseOrder ]

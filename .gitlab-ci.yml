@@ -1,0 +1,113 @@
+stages:
+  - build
+  - deploy
+  - migrations
+
+.build:
+  stage: build
+  tags:
+    - docker
+  image: lsisoftware/php:7.4-apache
+  before_script:
+    - rm -rf .git
+  script:
+    - composer install
+  artifacts:
+    expire_in: 1 day
+    paths:
+      - ./
+
+.deploy:
+  stage: deploy
+  tags:
+    - docker
+  image: alpine
+
+.migrations:
+  stage: migrations
+  tags:
+    - docker
+  image: alpine
+
+build.develop:
+  extends: .build
+  environment:
+    name: develop
+  only:
+    - develop
+
+deploy.develop:
+  extends: .deploy
+  environment:
+    name: develop
+  only:
+    - develop
+  dependencies:
+    - build.develop
+  before_script:
+    - apk add --no-cache rsync openssh-client
+    - eval $(ssh-agent -s)
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - echo "$DEV_SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - RELEASE=2021.1.1
+    - WORKDIR=/home/foodhub/www/fhp
+  script:
+    - ssh -p22 $DEV_SSH_USERNAME@$DEV_SSH_HOST "mkdir -p $WORKDIR"
+    - rsync -avz --exclude 'var/cache' --delete --cvs-exclude -e ssh ./ $DEV_SSH_USERNAME@$DEV_SSH_HOST:$WORKDIR/
+    - ssh -p22 $DEV_SSH_USERNAME@$DEV_SSH_HOST "cd $WORKDIR && cp ./deploy/vps/develop.env ./.env.local"
+    - ssh -p22 $DEV_SSH_USERNAME@$DEV_SSH_HOST "cd $WORKDIR && npm install && npm run build && php bin/console c:c"
+
+migrations.develop:
+  extends: .migrations
+  environment:
+    name: develop
+  only:
+    refs:
+      - develop
+    changes:
+      - src/Migrations/*
+  dependencies:
+    - deploy.develop
+  before_script:
+    - apk add --no-cache rsync openssh-client
+    - eval $(ssh-agent -s)
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - echo "$DEV_SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - RELEASE=2021.1.1
+    - WORKDIR=/home/foodhub/www/fhp
+  script:
+    - ssh -p22 $DEV_SSH_USERNAME@$DEV_SSH_HOST "cd $WORKDIR && php bin/console d:m:m -n"
+
+# build.release:
+#   extends: .build
+#   environment:
+#     name: release
+#   only:
+#     - /^release/.*$/
+
+# deploy.release:
+#   extends: .deploy
+#   environment:
+#     name: release
+#   only:
+#     - /^release/.*$/
+#   dependencies:
+#     - build.release
+#   before_script:
+#     - apk add --no-cache rsync openssh-client
+#     - eval $(ssh-agent -s)
+#     - mkdir -p ~/.ssh
+#     - chmod 700 ~/.ssh
+#     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+#     - echo "$RELEASE_SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+#     - RELEASE=2021.1.1
+#     - WORKDIR=/home/foodhub/www/fhp
+#   script:
+#     - ssh -p22 $RELEASE_SSH_USERNAME@$RELEASE_SSH_HOST "mkdir -p $WORKDIR"
+#     - rsync -avz --exclude 'var/cache' --delete --cvs-exclude -e ssh ./ $RELEASE_SSH_USERNAME@$RELEASE_SSH_HOST:$WORKDIR/
+#     - ssh -p22 $RELEASE_SSH_USERNAME@$RELEASE_SSH_HOST "cd $WORKDIR && cp ./deploy/vps/release.env ./.env.local"
+#     - ssh -p22 $RELEASE_SSH_USERNAME@$RELEASE_SSH_HOST "cd $WORKDIR && npm install && npm run build && php bin/console c:c"

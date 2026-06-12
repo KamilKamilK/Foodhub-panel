@@ -1,0 +1,19 @@
+lsi_users_create:
+  path: /client/user/create
+  controller: App\ClientContext\Infrastructure\Http\ClientUserController::postAction
+  methods: POST
+
+lsi_client_company_patch:
+  path: /client/company
+  controller: App\ClientContext\Infrastructure\Http\ClientUserController::patchCompanyAction
+  methods: PATCH
+
+lsi_users_update:
+  path: /client/user/update
+  controller: App\ClientContext\Infrastructure\Http\ClientUserController::putAction
+  methods: PUT
+
+lsi_users_delete:
+  path: /client/user/delete
+  controller: App\ClientContext\Infrastructure\Http\ClientUserController::deleteAction
+  methods: DELETE

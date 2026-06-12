@@ -1,0 +1,47 @@
+App\ClientContext\Application\DTO\LicenseDetails\ClientLicenseDTO:
+  exclusion_policy: ALL
+  properties:
+    licenseId:
+      expose: true
+      type: integer
+      groups: [ licenseDetails ]
+    name:
+      expose: true
+      type: string
+      groups: [ licenseDetails ]
+    validFrom:
+      expose: true
+      type: string
+      groups: [ licenseDetails ]
+    expirationDate:
+      expose: true
+      type: string
+      groups: [ licenseDetails ]
+    period:
+      expose: true
+      type: string
+      groups: [ licenseDetails ]
+    isTrial:
+      expose: true
+      type: boolean
+      groups: [ licenseDetails ]
+    includedFoodHubOrder:
+      expose: true
+      type: boolean
+      groups: [ licenseDetails ]
+    additionalDevices:
+      expose: true
+      type: array<App\ClientContext\Application\DTO\LicenseDetails\ClientDeviceDTO>
+      groups: [ licenseDetails ]
+    addons:
+      expose: true
+      type: array<App\ClientContext\Application\DTO\LicenseDetails\ClientAddonDTO>
+      groups: [ licenseDetails ]
+    priceMonth:
+      expose: true
+      type: decimalType
+      groups: [ licenseDetails ]
+    priceYear:
+      expose: true
+      type: decimalType
+      groups: [ licenseDetails ]

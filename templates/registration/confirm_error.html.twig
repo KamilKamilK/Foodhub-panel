@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block nav %}
+
+{% endblock nav %}
+{% block body %}
+    <section id="signup" class="signup-section">
+        <div class="mx-auto text-center form-container">
+            <p class="title-main text-center justify-content-center">
+                {{ 'registration.process.error-title' | trans }}
+            </p>
+            {% include 'util/flash.html.twig' %}
+
+            <div class="mt-3 signinBtn">
+                <a href="{{ appUrl }}" class="btn signinBtn" type="button">{{ 'action.signin' | trans }}</a>
+            </div>
+        </div>
+    </section>
+    <section id="bottom" class="bottom-section bg-transparent">
+        <div class="copyrights pt-2">
+            {{ 'registration.bottom.copyright' | trans({'%year%': date('now')|date('Y')}) }}
+        </div>
+    </section>
+{% endblock body %}

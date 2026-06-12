@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping">
+  <entity name="App\OrderContext\Domain\Entity\Payment" repository-class="App\OrderContext\Infrastructure\Persistence\Repository\PaymentRepository" table="lsi_client_payment">
+    <id name="id" type="integer">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="createdAt" type="datetime" nullable="false"/>
+    <field name="paidAt" type="datetime" nullable="true"/>
+    <field name="paymentType" type="string" nullable="false"/>
+    <field name="paymentTypeValue" type="string" nullable="false"/>
+    <field name="status" type="string" nullable="false"/>
+    <field name="operationNumber" type="text" nullable="true"/>
+    <field name="currency" type="string" length="3" nullable="false"/>
+    <field name="totalPriceNet" type="decimalType" precision="10" scale="2" nullable="true"/>
+    <field name="totalPriceGross" type="decimalType" precision="10" scale="2" nullable="true"/>
+    <field name="continueUrl" type="text" nullable="false"/>
+    <field name="paymentUrl" type="text" nullable="true"/>
+    <one-to-one field="clientLicenseOrder" target-entity="App\OrderContext\Domain\Entity\ClientLicenseOrder" inversed-by="payment">
+      <join-column name="order_id" referenced-column-name="id"/>
+    </one-to-one>
+  </entity>
+</doctrine-mapping>

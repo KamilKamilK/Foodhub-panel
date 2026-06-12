@@ -1,0 +1,146 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "k8s-chart.fullname" . }}
+  labels:
+{{ include "k8s-chart.labels" . | indent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "k8s-chart.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "k8s-chart.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      volumes:
+        - name: git-source
+          emptyDir: {}
+        - name: env-source
+          azureFile:
+            secretName: file-storage-creds
+            shareName: foodhub
+            readOnly: false
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          workingDir: /var/www
+          volumeMounts:
+            - name: git-source
+              mountPath: /var/www
+              subPath: www
+            - name: env-source
+              mountPath: /var/www/var/data
+          ports:
+            - name: http
+              containerPort:  {{ .Values.containers.port }}
+              protocol: TCP
+#          livenessProbe:
+#            failureThreshold: 3
+#            httpGet:
+#              path: /auth
+#              port: 80
+#              scheme: HTTP
+#            initialDelaySeconds: 10
+#            periodSeconds: 10
+#            successThreshold: 1
+#            timeoutSeconds: 1
+#          readinessProbe:
+#            failureThreshold: 3
+#            httpGet:
+#              path: /auth
+#              port: 80
+#              scheme: HTTP
+#            initialDelaySeconds: 10
+#            periodSeconds: 10
+#            successThreshold: 1
+#            timeoutSeconds: 1
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          lifecycle:
+            postStart:
+              exec:
+                command: ["/bin/sh","-c", "chown -R www-data:www-data /var/www && composer install && npm install && npm run build"]
+          env:
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: db-creds
+                  key: host
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: db-creds
+                  key: name
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: db-creds
+                  key: user
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-creds
+                  key: password
+            - name: APP_ENV
+              value: {{ .Values.containers.app_env }}
+            - name: API_DOMAIN
+              value: {{ .Values.containers.api_domain }}
+            - name: LANDING_PAGE_URL
+              value: {{ .Values.containers.lp_url }}
+            - name: MAILER_URL
+              value: {{ .Values.containers.mailer_url }}
+            - name: ENV_STORAGE_DIR
+              value: {{ .Values.containers.env_storage_dir }}
+      initContainers:
+        - name: git-sync
+          image: k8s.gcr.io/git-sync:v3.1.5
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: git-source
+              mountPath: /www
+          env:
+            - name: GIT_SYNC_REPO
+              value: https://github.com/foodhub/foodhub-panel.git
+            - name: GIT_SYNC_BRANCH
+              value: master
+            - name: GIT_SYNC_ROOT
+              value: /www
+            - name: GIT_SYNC_DEST
+              value: www
+            - name: GIT_SYNC_PERMISSIONS
+              value: "0777"
+            - name: GIT_SYNC_ONE_TIME
+              value: "true"
+            - name: GIT_SYNC_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: git-creds
+                  key: username
+            - name: GIT_SYNC_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: git-creds
+                  key: password
+          securityContext:
+            runAsUser: 0
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}

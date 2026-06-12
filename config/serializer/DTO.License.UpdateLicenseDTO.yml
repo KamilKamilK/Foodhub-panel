@@ -1,0 +1,15 @@
+App\ClientContext\Application\DTO\License\UpdateLicenseDTO:
+  exclusion_policy: ALL
+  properties:
+    subdomain:
+      expose: true
+      type: string
+      groups: [ licenseUpdate ]
+    addons:
+      expose: true
+      type: array<App\ClientContext\Application\DTO\License\UpdateLicenseAddonsDTO>
+      groups: [ licenseUpdate ]
+    additionalDevices:
+      expose: true
+      type: array<App\ClientContext\Application\DTO\License\UpdateLicenseAdditionalDevicesDTO>
+      groups: [ licenseUpdate ]

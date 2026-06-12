@@ -1,0 +1,12 @@
+App\LicenseContext\Domain\Entity\LicenseBonus:
+  exclusion_policy: ALL
+  properties:
+    id:
+      expose: true
+      type: integer
+      groups: [ licenseGet ]
+  virtual_properties:
+    name:
+      type: string
+      exp: object.getTranslation(service('app.locale_service')).getName()
+      groups: [ licenseGet ]

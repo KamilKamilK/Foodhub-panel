@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="024-edit-icon" format="2">
+  <advance width="512"/>
+  <unicode hex="F117"/>
+  <outline>
+    <contour>
+      <point x="391.765" y="350.392" type="line"/>
+      <point x="414.392" y="327.765" type="line" smooth="yes"/>
+      <point x="426.889" y="315.268"/>
+      <point x="426.889" y="295.007"/>
+      <point x="414.392" y="282.51" type="curve" smooth="yes"/>
+      <point x="215.153" y="83.2701" type="line"/>
+      <point x="215.153" y="83.2701" type="line"/>
+      <point x="123.541" y="51.9469" type="line" smooth="yes"/>
+      <point x="119.36" y="50.5172"/>
+      <point x="114.812" y="52.7477"/>
+      <point x="113.383" y="56.9283" type="curve" smooth="yes"/>
+      <point x="112.779" y="58.6949"/>
+      <point x="112.812" y="60.6168"/>
+      <point x="113.476" y="62.3619" type="curve" smooth="yes"/>
+      <point x="147.27" y="151.153" type="line"/>
+      <point x="147.27" y="151.153" type="line"/>
+      <point x="346.51" y="350.392" type="line" smooth="yes"/>
+      <point x="359.007" y="362.889"/>
+      <point x="379.268" y="362.889"/>
+      <point x="391.765" y="350.392" type="curve"/>
+    </contour>
+  </outline>
+</glyph>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="065-tiles" format="2">
+  <advance width="511"/>
+  <unicode hex="F13F"/>
+  <outline>
+    <contour>
+      <point x="0" y="428.8" type="line"/>
+      <point x="224" y="428.8" type="line"/>
+      <point x="224" y="204.8" type="line"/>
+      <point x="0" y="204.8" type="line"/>
+    </contour>
+    <contour>
+      <point x="0" y="172.8" type="line"/>
+      <point x="224" y="172.8" type="line"/>
+      <point x="224" y="-51.2" type="line"/>
+      <point x="0" y="-51.2" type="line"/>
+    </contour>
+    <contour>
+      <point x="256" y="428.8" type="line"/>
+      <point x="480" y="428.8" type="line"/>
+      <point x="480" y="204.8" type="line"/>
+      <point x="256" y="204.8" type="line"/>
+    </contour>
+    <contour>
+      <point x="256" y="172.8" type="line"/>
+      <point x="480" y="172.8" type="line"/>
+      <point x="480" y="-51.2" type="line"/>
+      <point x="256" y="-51.2" type="line"/>
+    </contour>
+  </outline>
+</glyph>

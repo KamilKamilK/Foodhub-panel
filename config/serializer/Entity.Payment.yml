@@ -1,0 +1,11 @@
+App\OrderContext\Domain\Entity\Payment:
+  exclusion_policy: ALL
+  properties:
+    status:
+      expose: true
+      type: string
+      groups: [ licenseOrder ]
+    paymentUrl:
+      expose: true
+      type: string
+      groups: [ licenseOrder ]

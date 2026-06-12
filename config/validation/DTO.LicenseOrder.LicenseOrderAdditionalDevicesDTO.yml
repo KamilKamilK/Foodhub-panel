@@ -1,0 +1,11 @@
+App\OrderContext\Application\DTO\LicenseOrder\LicenseOrderAdditionalDevicesDTO:
+  exclusion_policy: ALL
+  properties:
+    additionalDeviceId:
+      - NotBlank: ~
+      - Type: integer
+    quantity:
+      - NotBlank: ~
+      - Type: integer
+      - GreaterThanOrEqual:
+          value: 0

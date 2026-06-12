@@ -1,0 +1,11 @@
+App\OrderContext\Application\DTO\PayUPaymentsDataDTO:
+  exclusion_policy: ALL
+  properties:
+    posId:
+      expose: true
+      type: integer
+      groups: [ payuData ]
+    paymentMethods:
+      expose: true
+      type: array
+      groups: [ payuData ]

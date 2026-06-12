@@ -1,0 +1,386 @@
+{
+  "info": {
+    "_postman_id": "d0436bf6-2a3f-43a2-b362-1caac5682da5",
+    "name": "FoodHub Panel",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "setup",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"user\": {\n        \"name\": \"firstname\",\n        \"phone\": \"userPhone\",\n        \"email\": \"usecrEm2ail@waaacaaapa222.pl\",\n        \"password\": \"userPassword\"\n    },\n    \"device\": {\n        \"macAddress\": \"40-DC-37-E0-7C-DS\",\n        \"name\": \"GalaxyTab 4\",\n        \"model\": \"testowy\",\n        \"platform\": null,\n        \"version\": \"5.6\"\n    },\n    \"type\": \"other\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/setup",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "setup"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "url",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/url?email=user@lsisoftware.pl",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "url"
+          ],
+          "query": [
+            {
+              "key": "email",
+              "value": "user@lsisoftware.pl"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/placesTypes",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{url}}/placesTypes",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "placesTypes"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "confirmAccount",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"confirmationToken\": \"asdasdasdadsd\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/user/confirm",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "user",
+            "confirm"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "client/licenseDetails",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{url}}/client/licenseDetails?subdomain=localhost",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "client",
+            "licenseDetails"
+          ],
+          "query": [
+            {
+              "key": "subdomain",
+              "value": "localhost"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/dotpay",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "id",
+              "value": "239308",
+              "type": "text"
+            },
+            {
+              "key": "operation_number",
+              "value": "M2545-98755",
+              "type": "text"
+            },
+            {
+              "key": "operation_type",
+              "value": "payment",
+              "type": "text"
+            },
+            {
+              "key": "operation_status",
+              "value": "completed",
+              "type": "text"
+            },
+            {
+              "key": "operation_amount",
+              "value": "1.00",
+              "type": "text"
+            },
+            {
+              "key": "operation_currency",
+              "value": "PLN",
+              "type": "text"
+            },
+            {
+              "key": "operation_original_amount",
+              "value": "1.00",
+              "type": "text"
+            },
+            {
+              "key": "operation_original_currency",
+              "value": "PLN",
+              "type": "text"
+            },
+            {
+              "key": "operation_datetime",
+              "value": "2019-10-07 17:27:27",
+              "type": "text"
+            },
+            {
+              "key": "control",
+              "value": "localhost;2;1",
+              "type": "text"
+            },
+            {
+              "key": "description",
+              "value": "Przedłużenie licencji Gastro Online",
+              "type": "text"
+            },
+            {
+              "key": "email",
+              "value": "pklos@lsisoftware.pl",
+              "type": "text"
+            },
+            {
+              "key": "p_info",
+              "value": "AAAAAAAAAAAA",
+              "type": "text"
+            },
+            {
+              "key": "p_email",
+              "value": "anonymous@lsisoftware.pl",
+              "type": "text"
+            },
+            {
+              "key": "channel",
+              "value": "73",
+              "type": "text"
+            },
+            {
+              "key": "signature",
+              "value": "8478192ecace3e738f0631d8b27037386793ddc31e2d80d67734532199add83b",
+              "type": "text"
+            }
+          ],
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/dotpay",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "dotpay"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "client/company/patch",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"subDomain\": \"localhost\",\n    \"name\": \"Frima 1\",\n    \"shortName\": \"f1\",\n    \"taxIdNumber\": \"1234567\",\n    \"registrationNumber\": \"REG12345567\",\n    \"street\": \"Wiśniowa 1\",\n    \"zipCode\": \"93-098\",\n    \"city\": \"Łódź\",\n    \"country\": \"Polska\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/client/company/patch",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "client",
+            "company",
+            "patch"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/agreements",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "locale",
+            "value": "pl",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{url}}/agreements",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "agreements"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "status",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{url}}/status",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "status"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "a9d06339-f9f1-4442-b379-03758aa5fd3f",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "dfa57a6f-a0f2-49da-8117-82358bf474db",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "id": "ea26584c-0c9f-4e42-9433-fb2e03b5f3c5",
+      "key": "url",
+      "value": "http://panel.foodhub.pl",
+      "type": "string",
+      "disabled": true
+    },
+    {
+      "id": "225d68bd-7a93-4509-ab10-9aafb0e6beb2",
+      "key": "url",
+      "value": "http://localhost:8001",
+      "type": "string"
+    }
+  ],
+  "protocolProfileBehavior": {}
+}

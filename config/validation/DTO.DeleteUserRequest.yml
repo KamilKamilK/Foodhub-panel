@@ -1,0 +1,5 @@
+App\ClientContext\Application\DTO\DeleteUserRequest:
+  properties:
+    email:
+      - NotBlank: ~
+      - Email: ~

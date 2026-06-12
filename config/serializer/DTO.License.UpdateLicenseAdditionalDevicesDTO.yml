@@ -1,0 +1,11 @@
+App\ClientContext\Application\DTO\License\UpdateLicenseAdditionalDevicesDTO:
+  exclusion_policy: ALL
+  properties:
+    deviceType:
+      expose: true
+      type: string
+      groups: [ licenseUpdate ]
+    quantity:
+      expose: true
+      type: integer
+      groups: [ licenseUpdate ]

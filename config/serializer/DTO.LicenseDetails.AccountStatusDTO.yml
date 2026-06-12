@@ -1,0 +1,43 @@
+App\ClientContext\Application\DTO\LicenseDetails\AccountStatusDTO:
+  exclusion_policy: ALL
+  properties:
+    expirationDate:
+      expose: true
+      type: string
+      groups: [ licenseDetails ]
+    createdAt:
+      expose: true
+      type: string
+      groups: [ licenseDetails ]
+    isActive:
+      expose: true
+      type: boolean
+      groups: [ licenseDetails ]
+    posLimit:
+      expose: true
+      type: integer
+      groups: [ licenseDetails ]
+    additionalPoses:
+      expose: true
+      type: integer
+      groups: [ licenseDetails ]
+    menuLimit:
+      expose: true
+      type: integer
+      groups: [ licenseDetails ]
+    includedFoodHubOrder:
+      expose: true
+      type: boolean
+      groups: [ licenseDetails ]
+    currentLicense:
+      expose: true
+      type: App\ClientContext\Application\DTO\LicenseDetails\ClientLicenseDTO
+      groups: [ licenseDetails ]
+    addons:
+      expose: true
+      type: array<App\ClientContext\Application\DTO\LicenseDetails\ClientAddonDTO>
+      groups: [ licenseDetails ]
+    activeLicenses:
+      expose: true
+      type: array<App\ClientContext\Application\DTO\LicenseDetails\ClientLicenseDTO>
+      groups: [ licenseDetails ]

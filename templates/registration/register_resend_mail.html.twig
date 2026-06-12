@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% block nav %}
+
+{% endblock nav %}
+{% block body %}
+    <section id="signup" class="signup-section">
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <section id="signup" class="signup-section">
+                    <div class="mx-auto text-center form-container">
+                        <p class="title-main text-center justify-content-center">
+                            {{ 'registration.process.success-title' | trans }}
+                        </p>
+                        <p class="title-description text-center">
+                            {{ 'registration.process.success-description' | trans }}
+                        </p>
+                        <div class="mt-5 signinBtn">
+                            <a href="{{ installationResult }}" class="btn signinBtn"
+                               type="button">{{ 'action.signin' | trans }}</a>
+                        </div>
+                    </div>
+                </section>
+                <section id="bottom" class="bottom-section bg-transparent">
+                    <div class="copyrights pt-2">
+                        {{ 'registration.bottom.copyright' | trans({'%year%': date('now')|date('Y')}) }}
+                    </div>
+                </section>
+            </div>
+            <div class="d-none d-lg-block col-lg-6 image-background-container"></div>
+        </div>
+    </section>
+{% endblock body %}
